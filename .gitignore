@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-pages/
+public/runtime/
+reference/
+tests/screenshots/
+.env
+.env.*
+*.log

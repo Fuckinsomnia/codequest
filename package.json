@@ -1,0 +1,35 @@
+{
+  "name": "codequest-local",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "test:pwa": "npm run build && node tests/pwa.mjs",
+    "postinstall": "node setup-runtime.mjs"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "lucide-react": "^0.468.0",
+    "@uiw/react-codemirror": "^4.25.0",
+    "@codemirror/lang-python": "^6.2.0",
+    "@codemirror/lang-javascript": "^6.2.0",
+    "@codemirror/lang-html": "^6.4.0",
+    "@codemirror/lang-sql": "^6.9.0",
+    "@codemirror/theme-one-dark": "^6.1.0",
+    "@fontsource/press-start-2p": "^5.2.0",
+    "@fontsource/mulish": "^5.2.0",
+    "pyodide": "0.27.7",
+    "sql.js": "^1.13.0"
+  },
+  "devDependencies": {
+    "vite": "^6.4.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "playwright-core": "^1.56.0"
+  }
+}

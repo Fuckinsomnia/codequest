@@ -1,0 +1,22 @@
+{
+  "name": "CodeQuest — Belajar Coding",
+  "short_name": "CodeQuest",
+  "description": "Belajar coding gratis, tanpa akun. Materi, editor, dan progres tersedia offline setelah persiapan awal.",
+  "lang": "id",
+  "start_url": "./#/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "categories": ["education", "developer tools"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Lanjut belajar", "url": "./#/progress", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Kursus Python", "url": "./#/course/python", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Builds", "url": "./#/builds", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}

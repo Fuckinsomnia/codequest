@@ -1,0 +1,11 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import '@fontsource/press-start-2p/latin-400.css';
+import '@fontsource/mulish/latin-400.css';
+import '@fontsource/mulish/latin-600.css';
+import '@fontsource/mulish/latin-700.css';
+import '@fontsource/mulish/latin-800.css';
+import App from './App';
+import {loadPersistedState} from './store';
+import './styles.css';
+loadPersistedState().then(initialState => createRoot(document.getElementById('root')).render(<App initialState={initialState}/>));
