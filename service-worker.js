@@ -33,8 +33,25 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin || !url.pathname.startsWith(SCOPE_PATH)) return;
   if (request.mode === 'navigate') {
-    event.respondWith(caches.open(CACHE_NAME).then(async cache => (await cache.match(`${SCOPE_PATH}index.html`)) || fetch(request)));
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      try {
+        const response = await fetch(request);
+        if (response.ok) await cache.put(`${SCOPE_PATH}index.html`, response.clone());
+        return response;
+      } catch {
+        return (await cache.match(`${SCOPE_PATH}index.html`)) || Response.error();
+      }
+    })());
   } else if (paths.has(url.pathname)) {
-    event.respondWith(caches.open(CACHE_NAME).then(async cache => (await cache.match(url.pathname)) || fetch(request)));
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      const cached = await cache.match(url.pathname);
+      const network = fetch(request).then(async response => {
+        if (response.ok) await cache.put(url.pathname, response.clone());
+        return response;
+      }).catch(() => cached || Response.error());
+      return cached || network;
+    })());
   }
 });

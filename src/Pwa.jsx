@@ -101,8 +101,7 @@ export default function Pwa({open, close, notify}) {
   function update() {
     if (window.confirm('Simpan proyek Builds yang sedang diedit sebelum memperbarui. Muat ulang sekarang? Progres tersimpan tetap dipertahankan.')) waiting?.postMessage({type: 'ACTIVATE_UPDATE'});
   }
-  if (!open) return null;
-  return <div className="modal-backdrop" onClick={close}><section className="modal pwa-modal" role="dialog" aria-modal="true" aria-labelledby="pwa-title" onClick={event => event.stopPropagation()}>
+  return <>{waiting && <div className="pwa-update-toast" role="status"><RefreshCw size={18}/><span>Versi baru CodeQuest tersedia.</span><button className="button small yellow" onClick={update}>Perbarui</button></div>}{open && <div className="modal-backdrop" onClick={close}><section className="modal pwa-modal" role="dialog" aria-modal="true" aria-labelledby="pwa-title" onClick={event => event.stopPropagation()}>
     <button className="close-modal icon-btn" aria-label="Tutup aplikasi HP" onClick={close}><X/></button>
     <div className="pwa-symbol"><pre className="ascii-phone" aria-hidden="true">{`  .-------.\n  | >   _ |\n  |_______|`}</pre></div><p className="eyebrow accent">BELAJAR DI MANA SAJA</p><h2 id="pwa-title">CodeQuest di HP</h2>
     <p>Buka langsung di browser, atau tambahkan ke layar utama seperti aplikasi. Tanpa APK, Play Store, atau Android Studio.</p>
@@ -110,5 +109,5 @@ export default function Pwa({open, close, notify}) {
     {installed ? <p className="pwa-installed"><CheckCircle2 size={18}/>Dibuka sebagai aplikasi mandiri</p> : installPrompt ? <button className="button yellow full-width" onClick={install}><Download size={18}/>Pasang di HP / perangkat ini</button> : <div className="pwa-instructions"><h3>Cara menambahkan ke layar utama</h3>{ios ? <ol><li>Buka alamat HTTPS CodeQuest di Safari.</li><li>Ketuk Bagikan, lalu Tambahkan ke Layar Utama.</li><li>Buka ikonnya dan tunggu status siap offline.</li></ol> : <ol><li>Buka alamat HTTPS CodeQuest di Chrome atau Edge.</li><li>Pilih menu browser, lalu Pasang aplikasi atau Tambahkan ke layar utama jika tersedia.</li><li>Kamu juga boleh terus belajar tanpa memasangnya.</li></ol>}</div>}
     <div className="pwa-storage"><h3><ShieldCheck size={19}/>Progres tetap di perangkatmu</h3><p>Progres, kode, catatan, dan Builds disimpan di IndexedDB, dengan cadangan lokal bila tersedia. Saat aplikasi dibuka online, rilis materi baru diperiksa dan dapat diterapkan lewat tombol pembaruan. Progres lama tetap disimpan.</p>{persistent ? <span className="pwa-persistent">Penyimpanan persisten diizinkan browser.</span> : navigator.storage?.persist && <button className="button small" onClick={protectProgress}>Lindungi penyimpanan progres</button>}<p className="pwa-warning">Tidak tersinkron otomatis antar-HP atau browser. Mode privat, menghapus data situs, atau menghapus aplikasi dapat menghilangkan data; ekspor cadangan secara berkala.</p><a className="text-link" href="#/progress" onClick={close}><Download size={16}/>Ekspor / impor progres</a></div>
     {waiting && <button className="button blue full-width pwa-update" onClick={update}><RefreshCw size={17}/>Pembaruan tersedia · Muat ulang</button>}
-  </section></div>;
+  </section></div>}</>;
 }
