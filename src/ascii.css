@@ -108,6 +108,8 @@
 .course-art.pink,
 .course-art.green,
 .course-art.blue {
+  --grid-size: 22px;
+  --level-glow: #0f766e55;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,9 +117,12 @@
   background-image:
     linear-gradient(#38bdf812 1px, transparent 1px),
     linear-gradient(90deg, #38bdf812 1px, transparent 1px),
-    radial-gradient(circle at 50% 100%, #0f766e55, transparent 68%);
-  background-size: 22px 22px, 22px 22px, 100% 100%;
+    radial-gradient(circle at 50% 100%, var(--level-glow), transparent 68%);
+  background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size), 100% 100%;
 }
+
+.course-art.level-menengah { --grid-size: 18px; --level-glow: #1d4ed855; }
+.course-art.level-expert { --grid-size: 26px; --level-glow: #7e22ce55; }
 
 .course-art { --ascii-color: #7dd3fc; }
 .course-art.purple { --ascii-color: #c4b5fd; }
@@ -134,17 +139,17 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 10px 6px;
+  padding: 4px 6px;
   overflow: hidden;
   color: var(--ascii-color);
-  font-size: clamp(6px, .85vw, 11px);
-  line-height: 1.06;
+  font-size: clamp(6px, .62vw, 8.5px);
+  line-height: 1.02;
   text-align: center;
   text-shadow: 0 0 12px color-mix(in srgb, var(--ascii-color) 45%, transparent);
 }
 
 .course-art.large .ascii-scene-course {
-  font-size: clamp(10px, 1.5vw, 22px);
+  font-size: clamp(9px, 1.15vw, 17px);
   opacity: .34;
 }
 

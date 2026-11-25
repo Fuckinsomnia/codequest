@@ -6,6 +6,7 @@ import { html } from '@codemirror/lang-html';
 import { sql } from '@codemirror/lang-sql';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { ArrowRight, BookOpen, Check, Clock } from 'lucide-react';
+import { getCourseArt, getProjectArt } from './ascii-art';
 export const route = path => { window.location.hash = path; };
 
 const asciiScenes = {
@@ -58,23 +59,10 @@ export function Editor({ value, onChange, language, height = '360px', readOnly =
   return <CodeMirror value={value} onChange={onChange} extensions={extensions} theme={oneDark} height={height} readOnly={readOnly} basicSetup={{lineNumbers:true,foldGutter:false,highlightActiveLine:true,autocompletion:true}} aria-label="Editor kode"/>;
 }
 export function CourseArt({ course, large = false }) {
-  const label = String(course.symbol || course.id).slice(0, 7);
-  const badge = `[ ${label} ]`.slice(0, 9).padEnd(9, ' ');
-  const art = String.raw`
-          .        .
-     .    / \   .     .
-       . /   \    .
-  ______/_____\____________
-  \                       /
-   \   .-------------.   /
-    \ /               \ /
-     |                 |
-     |  ${badge}  |
-     |                 |
-     |_________________|
-  ___/_________________\___
-       .   .     .   .`;
-  return <div className={`course-art ${course.theme || 'blue'} ${large ? 'large' : ''}`} aria-hidden="true"><pre className="ascii-scene ascii-scene-course">{art}</pre></div>;
+  const artKey = course.artId || course.trackId || course.id || 'codequest';
+  const levelClass = course.level ? `level-${course.level.toLowerCase()}` : '';
+  const art = course.artId ? getProjectArt(course.artId) : getCourseArt(course);
+  return <div className={`course-art ${course.theme || 'blue'} ${levelClass} ${large ? 'large' : ''}`} data-art={artKey} aria-hidden="true"><pre className="ascii-scene ascii-scene-course">{art}</pre></div>;
 }
 export function CourseCard({course,state,index}) {
   const done = course.lessons.filter(l=>state.completed.includes(l.id)).length;
@@ -83,4 +71,4 @@ export function CourseCard({course,state,index}) {
 export function SectionHeading({eyebrow,title,description,children}) { return <div className="section-heading"><div>{eyebrow && <p className="eyebrow accent">{eyebrow}</p>}<h2>{title}</h2>{description && <p>{description}</p>}</div>{children}</div>; }
 export function Empty({title,description,action}) { return <div className="empty"><AsciiMark>{'</>'}</AsciiMark><h3>{title}</h3><p>{description}</p>{action}</div>; }
 export function Stat({icon:Icon,label,value}) { return <div className="stat"><Icon size={23}/><div><strong>{value}</strong><span>{label}</span></div></div>; }
-export function ProjectCard({project,done=0}) { return <a className="project-card" href={`#/projects/${project.id}`}><CourseArt course={{theme:project.theme,symbol:project.id==='pomodoro'?'25:00':project.id==='budget'?'Rp':project.id==='data-detective'?'SQL':project.id==='pixel-garden'?'✦':'</>'}}/><div className="project-body"><span className="eyebrow">GUIDED PROJECT · {project.difficulty.toUpperCase()}</span><h3>{project.title}</h3><p>{project.summary}</p><div className="card-meta"><span>{project.course}</span><span><Clock size={14}/>{project.time}</span></div><div className="project-cta">{done === project.steps.length ? <><Check size={17}/>Selesai</> : <>Mulai membangun <ArrowRight size={16}/></>}</div></div></a>; }
+export function ProjectCard({project,done=0}) { return <a className="project-card" href={`#/projects/${project.id}`}><CourseArt course={{artId:project.id,theme:project.theme}}/><div className="project-body"><span className="eyebrow">GUIDED PROJECT · {project.difficulty.toUpperCase()}</span><h3>{project.title}</h3><p>{project.summary}</p><div className="card-meta"><span>{project.course}</span><span><Clock size={14}/>{project.time}</span></div><div className="project-cta">{done === project.steps.length ? <><Check size={17}/>Selesai</> : <>Mulai membangun <ArrowRight size={16}/></>}</div></div></a>; }

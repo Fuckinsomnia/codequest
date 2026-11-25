@@ -53,7 +53,7 @@ Rilis materi saat ini: **2026.11**.
 - **PWA** — dapat dipasang ke layar utama HP atau desktop tanpa APK, Play Store, atau Android Studio.
 - **Offline** — materi, editor, font, ilustrasi ASCII, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
 - **Tema gelap/terang** dan tampilan responsif untuk layar kecil.
-- **Grafis ASCII art** — latar, peta, karakter, ilustrasi kursus/proyek, dan ikon aplikasi dibuat dari teks monospace.
+- **Grafis ASCII art** — latar, peta, karakter, ikon aplikasi, serta 61 ilustrasi kursus dan 6 ilustrasi proyek yang unik per bidang dan level.
 - **Tanpa pelacakan aplikasi** — tidak ada akun, analytics aplikasi, atau iklan.
 
 ## Mulai menggunakan
@@ -201,6 +201,7 @@ codequest/
 │   ├── Practice.jsx           # Coding Challenges
 │   ├── Pwa.jsx                # Instalasi, status offline, update, dan penyimpanan
 │   ├── components.jsx         # Komponen UI bersama dan ilustrasi ASCII
+│   ├── ascii-art.js           # Ilustrasi unik per kursus dan proyek
 │   ├── ascii.css              # Tema grafis ASCII
 │   ├── engine.js              # Eksekusi kode dan preview HTML/CSS
 │   ├── store.js               # Validasi, persistensi, streak, dan ekspor
