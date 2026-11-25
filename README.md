@@ -54,6 +54,7 @@ Rilis materi saat ini: **2026.11**.
 - **Offline** — materi, editor, font, ilustrasi ASCII, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
 - **Tema gelap/terang** dan tampilan responsif untuk layar kecil.
 - **Grafis ASCII art** — latar, peta, karakter, ikon aplikasi, serta 61 ilustrasi kursus dan 6 ilustrasi proyek yang unik per bidang dan level.
+- **ASCII realistis berwarna** — foto ular Python dan lanskap petualangan dipadukan dengan lapisan karakter ASCII di canvas.
 - **Tanpa pelacakan aplikasi** — tidak ada akun, analytics aplikasi, atau iklan.
 
 ## Mulai menggunakan
@@ -202,6 +203,7 @@ codequest/
 │   ├── Pwa.jsx                # Instalasi, status offline, update, dan penyimpanan
 │   ├── components.jsx         # Komponen UI bersama dan ilustrasi ASCII
 │   ├── ascii-art.js           # Ilustrasi unik per kursus dan proyek
+│   ├── RealisticAscii.jsx     # Render foto menjadi karakter ASCII berwarna
 │   ├── ascii.css              # Tema grafis ASCII
 │   ├── engine.js              # Eksekusi kode dan preview HTML/CSS
 │   ├── store.js               # Validasi, persistensi, streak, dan ekspor
@@ -341,6 +343,13 @@ npm run build -- --base=/nama-repository/
 - **GitHub Pages** sebagai hosting statis.
 
 Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bundle, menghitung versi cache, lalu menyuntikkan daftar precache ke `sw.js`.
+
+### Sumber aset realistis
+
+- Ular Python: [Pexels photo 19080219](https://www.pexels.com/photo/green-snake-on-tree-branch-19080219/), digunakan sesuai [Pexels License](https://www.pexels.com/license/).
+- Lanskap petualangan: [Unsplash rdS3LriPaAc](https://unsplash.com/photos/person-on-stone-fortress-wall-edge-rdS3LriPaAc), digunakan sesuai [Unsplash License](https://unsplash.com/license).
+
+Kedua foto menjadi basis bentuk dan warna realistis. Lapisan karakter ASCII digambar di atasnya sehingga hasil akhir tetap terbaca sebagai foto, tetapi memiliki tekstur ASCII yang khas.
 
 ## Keamanan dan batasan editor
 

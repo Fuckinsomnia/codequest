@@ -15,7 +15,7 @@ assert.ok(base.startsWith('/') && base.endsWith('/'));
 const outsideScope = [];
 await mkdir(shots, {recursive:true});
 let revision = 1;
-const mime = {'.html':'text/html', '.js':'application/javascript', '.css':'text/css', '.json':'application/json', '.webmanifest':'application/manifest+json', '.wasm':'application/wasm', '.png':'image/png', '.webp':'image/webp', '.svg':'image/svg+xml', '.woff':'font/woff', '.woff2':'font/woff2', '.zip':'application/zip'};
+const mime = {'.html':'text/html', '.js':'application/javascript', '.css':'text/css', '.json':'application/json', '.webmanifest':'application/manifest+json', '.wasm':'application/wasm', '.png':'image/png', '.jpg':'image/jpeg', '.webp':'image/webp', '.svg':'image/svg+xml', '.woff':'font/woff', '.woff2':'font/woff2', '.zip':'application/zip'};
 const server = createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
@@ -74,7 +74,7 @@ try {
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cache=await page.evaluate(async()=>{const names=(await caches.keys()).filter(name=>name.startsWith('codequest-offline-'));const cache=await caches.open(names[0]);return {names,urls:(await cache.keys()).map(request=>new URL(request.url).pathname)};});
   assert.equal(cache.names.length,1);
-  for(const asset of ['index.html','manifest.webmanifest','icon-512.png','runner.js','runtime/python/pyodide.asm.wasm','runtime/python/python_stdlib.zip','runtime/sql/sql-wasm.wasm']) assert.ok(cache.urls.includes(`${base}${asset}`),asset);
+  for(const asset of ['index.html','manifest.webmanifest','icon-512.png','python-realistic.jpg','adventure-realistic.jpg','runner.js','runtime/python/pyodide.asm.wasm','runtime/python/python_stdlib.zip','runtime/sql/sql-wasm.wasm']) assert.ok(cache.urls.includes(`${base}${asset}`),asset);
   assert.ok(cache.urls.every(url=>url.startsWith(base)));
   assert.equal(await page.evaluate(async()=>(await navigator.serviceWorker.getRegistration()).scope),`${origin}${base}`);
   await page.evaluate(async()=>{await caches.open('codequest-offline-unrelated-project');});
