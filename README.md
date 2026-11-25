@@ -51,8 +51,9 @@ Rilis materi saat ini: **2026.11**.
 - **30 Hari Coding** — tantangan membangun kebiasaan belajar harian.
 - **Builds** — ruang membuat website dengan HTML, CSS, dan JavaScript, lengkap dengan live preview, penyimpanan lokal, dan unduhan HTML. Maksimal 30 proyek.
 - **PWA** — dapat dipasang ke layar utama HP atau desktop tanpa APK, Play Store, atau Android Studio.
-- **Offline** — materi, editor, font, gambar, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
+- **Offline** — materi, editor, font, ilustrasi ASCII, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
 - **Tema gelap/terang** dan tampilan responsif untuk layar kecil.
+- **Grafis ASCII art** — latar, peta, karakter, ilustrasi kursus/proyek, dan ikon aplikasi dibuat dari teks monospace.
 - **Tanpa pelacakan aplikasi** — tidak ada akun, analytics aplikasi, atau iklan.
 
 ## Mulai menggunakan
@@ -189,9 +190,9 @@ codequest/
 ├── .github/workflows/
 │   └── pages.yml              # Build, tes unit, dan deploy GitHub Pages
 ├── public/
-│   ├── icon-*.png             # Ikon PWA
+│   ├── icon-*.png             # Ikon PWA ASCII
+│   ├── favicon.svg           # Favicon ASCII
 │   ├── manifest.webmanifest   # Manifest aplikasi
-│   ├── meadow.*               # Aset ilustrasi
 │   └── runner.js              # Web Worker runtime kode
 ├── src/
 │   ├── data/                  # Kursus, pelajaran, kuis, dan proyek
@@ -199,7 +200,8 @@ codequest/
 │   ├── Lesson.jsx             # Latihan, editor, kuis, catatan, dan umpan balik
 │   ├── Practice.jsx           # Coding Challenges
 │   ├── Pwa.jsx                # Instalasi, status offline, update, dan penyimpanan
-│   ├── components.jsx         # Komponen UI bersama
+│   ├── components.jsx         # Komponen UI bersama dan ilustrasi ASCII
+│   ├── ascii.css              # Tema grafis ASCII
 │   ├── engine.js              # Eksekusi kode dan preview HTML/CSS
 │   ├── store.js               # Validasi, persistensi, streak, dan ekspor
 │   ├── main.jsx               # Entry point React

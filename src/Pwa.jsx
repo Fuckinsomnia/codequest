@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Smartphone, Download, WifiOff, ShieldCheck, RefreshCw, X, CheckCircle2} from 'lucide-react';
+import {Download, WifiOff, ShieldCheck, RefreshCw, X, CheckCircle2} from 'lucide-react';
 import './pwa.css';
 
 export default function Pwa({open, close, notify}) {
@@ -104,7 +104,7 @@ export default function Pwa({open, close, notify}) {
   if (!open) return null;
   return <div className="modal-backdrop" onClick={close}><section className="modal pwa-modal" role="dialog" aria-modal="true" aria-labelledby="pwa-title" onClick={event => event.stopPropagation()}>
     <button className="close-modal icon-btn" aria-label="Tutup aplikasi HP" onClick={close}><X/></button>
-    <div className="pwa-symbol"><Smartphone size={35}/></div><p className="eyebrow accent">BELAJAR DI MANA SAJA</p><h2 id="pwa-title">CodeQuest di HP</h2>
+    <div className="pwa-symbol"><pre className="ascii-phone" aria-hidden="true">{`  .-------.\n  | >   _ |\n  |_______|`}</pre></div><p className="eyebrow accent">BELAJAR DI MANA SAJA</p><h2 id="pwa-title">CodeQuest di HP</h2>
     <p>Buka langsung di browser, atau tambahkan ke layar utama seperti aplikasi. Tanpa APK, Play Store, atau Android Studio.</p>
     <div className={`pwa-status ${offline === 'ready' ? 'ready' : ''}`} role="status">{offline === 'ready' ? <CheckCircle2 size={21}/> : <WifiOff size={21}/>}<div><strong>{offline === 'ready' ? 'Siap digunakan offline' : offline === 'development' ? 'Mode pengembangan' : offline === 'unsupported' ? 'PWA memerlukan HTTPS' : offline === 'error' ? 'Persiapan offline belum berhasil' : 'Menyiapkan materi offline…'}</strong><span>{offline === 'ready' ? `${online ? 'Terhubung' : 'Sedang offline'} · Materi dan lima editor kode tersedia di perangkat ini.` : offline === 'development' ? 'Buka versi produksi untuk memasang aplikasi dan mengunduh materi offline.' : offline === 'unsupported' ? 'Alamat HTTP jaringan lokal bisa dibuka, tetapi pemasangan dan offline memerlukan alamat HTTPS yang dipercaya browser.' : offline === 'error' ? 'Periksa ruang penyimpanan dan koneksi, lalu muat ulang. Progres yang sudah tersimpan tidak dihapus.' : 'Pertama kali: sekitar 18 MB. Biarkan halaman terbuka sampai persiapan selesai.'}</span></div></div>
     {installed ? <p className="pwa-installed"><CheckCircle2 size={18}/>Dibuka sebagai aplikasi mandiri</p> : installPrompt ? <button className="button yellow full-width" onClick={install}><Download size={18}/>Pasang di HP / perangkat ini</button> : <div className="pwa-instructions"><h3>Cara menambahkan ke layar utama</h3>{ios ? <ol><li>Buka alamat HTTPS CodeQuest di Safari.</li><li>Ketuk Bagikan, lalu Tambahkan ke Layar Utama.</li><li>Buka ikonnya dan tunggu status siap offline.</li></ol> : <ol><li>Buka alamat HTTPS CodeQuest di Chrome atau Edge.</li><li>Pilih menu browser, lalu Pasang aplikasi atau Tambahkan ke layar utama jika tersedia.</li><li>Kamu juga boleh terus belajar tanpa memasangnya.</li></ol>}</div>}

@@ -1,0 +1,267 @@
+:root {
+  --ascii: "Courier New", "Lucida Console", monospace;
+}
+
+.coin {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #f8cf5a;
+  background: #111827;
+  color: #f8cf5a;
+  box-shadow: 2px 2px 0 #8b5e34;
+  font-family: var(--ascii);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  image-rendering: auto;
+}
+
+.ascii-mark {
+  display: inline-block;
+  color: #7dd3fc;
+  font-family: var(--ascii);
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 0 14px #38bdf866;
+}
+
+.ascii-scene {
+  margin: 0;
+  font-family: var(--ascii);
+  white-space: pre;
+  pointer-events: none;
+  user-select: none;
+}
+
+.home-hero {
+  background: #020617;
+}
+
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: repeating-linear-gradient(180deg, transparent 0 3px, #02061766 3px 4px);
+  pointer-events: none;
+}
+
+.hero-shade {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 72%, #0f766e33, transparent 48%),
+    linear-gradient(#02061722, #020617bb 72%, #020617);
+}
+
+.home-hero .ascii-scene {
+  position: absolute;
+  right: 0;
+  bottom: 22px;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  color: #86efac;
+  font-size: clamp(6px, 1vw, 12px);
+  line-height: 1.08;
+  text-align: center;
+  text-shadow: 0 0 12px #22c55e66;
+  opacity: .88;
+}
+
+.hero-content,
+.hero-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.catalog-hero {
+  background: #020617;
+}
+
+.catalog-hero .ascii-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #7dd3fc;
+  font-size: clamp(7px, 1vw, 15px);
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 0 0 16px #0284c766;
+  opacity: .24;
+}
+
+.catalog-hero > div:not(.ascii-scene) {
+  position: relative;
+  z-index: 1;
+}
+
+.course-art,
+.course-art.purple,
+.course-art.orange,
+.course-art.yellow,
+.course-art.pink,
+.course-art.green,
+.course-art.blue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #07111f;
+  background-image:
+    linear-gradient(#38bdf812 1px, transparent 1px),
+    linear-gradient(90deg, #38bdf812 1px, transparent 1px),
+    radial-gradient(circle at 50% 100%, #0f766e55, transparent 68%);
+  background-size: 22px 22px, 22px 22px, 100% 100%;
+}
+
+.course-art { --ascii-color: #7dd3fc; }
+.course-art.purple { --ascii-color: #c4b5fd; }
+.course-art.orange { --ascii-color: #fdba74; }
+.course-art.yellow { --ascii-color: #fde68a; }
+.course-art.pink { --ascii-color: #f9a8d4; }
+.course-art.green { --ascii-color: #86efac; }
+.course-art.blue { --ascii-color: #7dd3fc; }
+
+.course-art .ascii-scene-course {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px 6px;
+  overflow: hidden;
+  color: var(--ascii-color);
+  font-size: clamp(6px, .85vw, 11px);
+  line-height: 1.06;
+  text-align: center;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--ascii-color) 45%, transparent);
+}
+
+.course-art.large .ascii-scene-course {
+  font-size: clamp(10px, 1.5vw, 22px);
+  opacity: .34;
+}
+
+.course-hero > .course-art {
+  filter: none;
+}
+
+.ascii-character {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: #f8cf5a;
+  font-family: var(--ascii);
+  font-weight: 700;
+  line-height: 1;
+  white-space: pre;
+  text-shadow: 0 0 14px #f8cf5a55;
+}
+
+.ascii-character.variant-1 { color: #7b9dff; text-shadow: 0 0 14px #7b9dff66; }
+.ascii-character.variant-2 { color: #be80e6; text-shadow: 0 0 14px #be80e666; }
+.ascii-character.variant-3 { color: #6bc69d; text-shadow: 0 0 14px #6bc69d66; }
+
+.quest-art .ascii-character {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pixel-platform {
+  width: auto;
+  height: auto;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  clip-path: none;
+  color: #9fb19c;
+  font-family: var(--ascii);
+  font-size: 12px;
+  line-height: 1;
+  white-space: pre;
+}
+
+.empty .ascii-mark {
+  margin-bottom: 18px;
+  font-size: 34px;
+}
+
+.build-placeholder .ascii-mark {
+  font-size: 44px;
+}
+
+.terminal-empty .ascii-mark {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+.pwa-symbol .ascii-phone {
+  margin: 0;
+  color: #7dd3fc;
+  font-family: var(--ascii);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 0 14px #38bdf855;
+}
+
+.logo,
+.eyebrow,
+.section-heading h2,
+.home-hero h1,
+.catalog-hero h1,
+.course-hero h1,
+.quest-banner h2,
+.last-cta h2,
+.daily-hero h1,
+.certificate h2 {
+  font-family: var(--ascii);
+}
+
+.home-hero h1 {
+  letter-spacing: -2px;
+  text-shadow: 3px 0 #542448, -3px 0 #542448, 0 -3px #542448, 0 4px #542448, 0 0 24px #f9731666;
+}
+
+@media (max-width: 720px) {
+  .home-hero .ascii-scene {
+    bottom: 38px;
+    font-size: 6px;
+    opacity: .72;
+  }
+
+  .catalog-hero .ascii-scene {
+    font-size: 7px;
+    opacity: .18;
+  }
+
+  .course-art .ascii-scene-course {
+    padding: 8px 4px;
+    font-size: 6px;
+  }
+
+  .course-art.large .ascii-scene-course {
+    font-size: 10px;
+  }
+
+  .quest-art .ascii-character {
+    width: min(144px, 100%) !important;
+    height: auto !important;
+  }
+
+  .logo {
+    letter-spacing: -.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quest-art .ascii-character {
+    animation: none;
+  }
+}

@@ -8,4 +8,5 @@ import '@fontsource/mulish/latin-800.css';
 import App from './App';
 import {loadPersistedState} from './store';
 import './styles.css';
+import './ascii.css';
 loadPersistedState().then(initialState => createRoot(document.getElementById('root')).render(<App initialState={initialState}/>));
