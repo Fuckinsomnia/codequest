@@ -64,7 +64,7 @@ export function CourseArt({ course, large = false }) {
   const levelClass = course.level ? `level-${course.level.toLowerCase()}` : '';
   const classes = `course-art ${course.theme || 'blue'} ${levelClass} ${large ? 'large' : ''}`;
   if (course.trackId === 'python' || course.id === 'python') {
-    return <div className={`${classes} python-realistic`} data-art="python-realistic" data-course-id={course.id}><RealisticAscii src={`${import.meta.env.BASE_URL}python-realistic.jpg`} alt="Ular Python hijau realistis di dahan hutan, dirender dari karakter ASCII" rows={large ? 42 : 24} contrast={1.38} brightness={course.level === 'Expert' ? 0.05 : course.level === 'Menengah' ? 0.025 : 0} saturation={course.level === 'Expert' ? 1.3 : 1.22} photoOpacity={0.42} asciiOpacity={0.92} focusY={0.53}/></div>;
+    return <div className={`${classes} python-realistic`} data-art="python-realistic" data-course-id={course.id}><RealisticAscii src={`${import.meta.env.BASE_URL}python-realistic.jpg`} alt="Ular Python hijau realistis di dahan hutan, dirender sebagai halftone ASCII" rows={large ? 64 : 38} contrast={1.46} brightness={course.level === 'Expert' ? 0.05 : course.level === 'Menengah' ? 0.025 : 0} photoOpacity={0.025} dotOpacity={0.96} focusY={0.53}/></div>;
   }
   const art = course.artId ? getProjectArt(course.artId) : getCourseArt(course);
   return <div className={classes} data-art={artKey} data-course-id={course.id} aria-hidden="true"><pre className="ascii-scene ascii-scene-course">{art}</pre></div>;

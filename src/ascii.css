@@ -45,7 +45,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: .96;
+  opacity: 1;
 }
 
 .home-hero {
@@ -147,7 +147,7 @@
 }
 
 .course-hero > .course-art .realistic-ascii {
-  opacity: .88;
+  opacity: 1;
 }
 
 .course-art { --ascii-color: #7dd3fc; }
