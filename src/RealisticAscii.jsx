@@ -17,7 +17,7 @@ export default function RealisticAscii({
   saturation = 1.18,
   photoOpacity = 0.04,
   dotOpacity = 0.94,
-  fit = 'contain',
+  fit = 'cover',
   focusY = 0.5,
   background = '#05070a',
 }) {
