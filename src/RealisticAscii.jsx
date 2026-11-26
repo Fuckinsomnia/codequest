@@ -115,26 +115,9 @@ export default function RealisticAscii({
           const sampledRed = clampChannel(gray + (red - gray) * saturation);
           const sampledGreen = clampChannel(gray + (green - gray) * saturation);
           const sampledBlue = clampChannel(gray + (blue - gray) * saturation);
-          let inkRed = sampledRed;
-          let inkGreen = sampledGreen;
-          let inkBlue = sampledBlue;
-          if (level > 0.74) {
-            inkRed = sampledRed + (255 - sampledRed) * 0.68;
-            inkGreen = sampledGreen + (255 - sampledGreen) * 0.68;
-            inkBlue = sampledBlue + (255 - sampledBlue) * 0.68;
-          } else if (level > 0.46) {
-            inkRed = clampChannel(sampledRed * 1.08 + 8);
-            inkGreen = clampChannel(sampledGreen * 1.08 + 8);
-            inkBlue = clampChannel(sampledBlue * 1.08 + 8);
-          } else if (level > 0.22) {
-            inkRed = sampledRed * 0.92;
-            inkGreen = sampledGreen * 0.92;
-            inkBlue = sampledBlue * 0.92;
-          } else {
-            inkRed = sampledRed * 0.58 + 6;
-            inkGreen = sampledGreen * 0.58 + 6;
-            inkBlue = sampledBlue * 0.58 + 6;
-          }
+          const inkRed = clampChannel(Math.pow(sampledRed / 255, 2.2) * 200 + 55);
+          const inkGreen = clampChannel(Math.pow(sampledGreen / 255, 2.2) * 200 + 55);
+          const inkBlue = clampChannel(Math.pow(sampledBlue / 255, 2.2) * 200 + 55);
           context.fillStyle = `rgb(${Math.round(inkRed)},${Math.round(inkGreen)},${Math.round(inkBlue)})`;
 
           context.globalAlpha = dotOpacity * (level < 0.08 ? 0.32 : 0.92);

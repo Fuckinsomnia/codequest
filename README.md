@@ -351,6 +351,8 @@ Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bu
 
 Kedua foto menjadi basis bentuk dan warna realistis. Lapisan karakter ASCII digambar di atasnya sehingga hasil akhir tetap terbaca sebagai foto, tetapi memiliki tekstur ASCII yang khas.
 
+Referensi renderer: [python-ascii_magic](https://github.com/LeandroBarone/python-ascii_magic) (MIT). CodeQuest mengadaptasi konsep ramp kepadatan karakter, koreksi gamma 2.2, dan boost kanal warna, dengan implementasi canvas sendiri.
+
 ## Keamanan dan batasan editor
 
 - Kode pengguna dijalankan di browser melalui Web Worker atau iframe sandbox.
