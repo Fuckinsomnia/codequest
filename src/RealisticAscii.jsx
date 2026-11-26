@@ -17,6 +17,7 @@ export default function RealisticAscii({
   saturation = 1.18,
   photoOpacity = 0.04,
   dotOpacity = 0.94,
+  fit = 'contain',
   focusY = 0.5,
   background = '#05070a',
 }) {
@@ -52,20 +53,39 @@ export default function RealisticAscii({
       sample.height = actualRows;
       const sampleContext = sample.getContext('2d', { willReadFrequently: true });
       if (!sampleContext) return;
-      const targetAspect = rect.width / rect.height;
-      const imageAspect = image.naturalWidth / image.naturalHeight;
-      const sourceWidth = imageAspect > targetAspect ? image.naturalHeight * targetAspect : image.naturalWidth;
-      const sourceHeight = imageAspect > targetAspect ? image.naturalHeight : image.naturalWidth / targetAspect;
-      const sourceX = (image.naturalWidth - sourceWidth) / 2;
-      const sourceY = Math.min(image.naturalHeight - sourceHeight, Math.max(0, (image.naturalHeight - sourceHeight) * focusY));
+      const characterAspect = cellWidth / fontSize;
+      sampleContext.fillStyle = background;
+      sampleContext.fillRect(0, 0, columns, actualRows);
 
-      if (photoOpacity > 0) {
-        context.globalAlpha = photoOpacity;
-        context.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, rect.width, rect.height);
-        context.globalAlpha = 1;
+      if (fit === 'contain') {
+        const sampleScale = Math.min(columns / (image.naturalWidth / characterAspect), actualRows / image.naturalHeight);
+        const sampleWidth = image.naturalWidth / characterAspect * sampleScale;
+        const sampleHeight = image.naturalHeight * sampleScale;
+        const sampleX = (columns - sampleWidth) / 2;
+        const sampleY = (actualRows - sampleHeight) / 2;
+        sampleContext.drawImage(image, sampleX, sampleY, sampleWidth, sampleHeight);
+        if (photoOpacity > 0) {
+          const visualScale = Math.min(rect.width / image.naturalWidth, rect.height / image.naturalHeight);
+          const visualWidth = image.naturalWidth * visualScale;
+          const visualHeight = image.naturalHeight * visualScale;
+          context.globalAlpha = photoOpacity;
+          context.drawImage(image, (rect.width - visualWidth) / 2, (rect.height - visualHeight) / 2, visualWidth, visualHeight);
+          context.globalAlpha = 1;
+        }
+      } else {
+        const targetAspect = rect.width / rect.height;
+        const imageAspect = image.naturalWidth / image.naturalHeight;
+        const sourceWidth = imageAspect > targetAspect ? image.naturalHeight * targetAspect : image.naturalWidth;
+        const sourceHeight = imageAspect > targetAspect ? image.naturalHeight : image.naturalWidth / targetAspect;
+        const sourceX = (image.naturalWidth - sourceWidth) / 2;
+        const sourceY = Math.min(image.naturalHeight - sourceHeight, Math.max(0, (image.naturalHeight - sourceHeight) * focusY));
+        sampleContext.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, columns, actualRows);
+        if (photoOpacity > 0) {
+          context.globalAlpha = photoOpacity;
+          context.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, rect.width, rect.height);
+          context.globalAlpha = 1;
+        }
       }
-
-      sampleContext.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, columns, actualRows);
       const pixels = sampleContext.getImageData(0, 0, columns, actualRows).data;
       let totalRed = 0;
       let totalGreen = 0;
@@ -158,7 +178,7 @@ export default function RealisticAscii({
       image.onload = null;
       image.onerror = null;
     };
-  }, [src, rows, characters, className, contrast, brightness, invert, saturation, photoOpacity, dotOpacity, focusY, background]);
+  }, [src, rows, characters, className, contrast, brightness, invert, saturation, photoOpacity, dotOpacity, fit, focusY, background]);
 
   return <canvas ref={canvasRef} className={`realistic-ascii ${className}`} role="img" aria-label={alt}/>;
 }

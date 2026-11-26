@@ -54,7 +54,7 @@ Rilis materi saat ini: **2026.11**.
 - **Offline** — materi, editor, font, ilustrasi ASCII, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
 - **Tema gelap/terang** dan tampilan responsif untuk layar kecil.
 - **Grafis ASCII art** — latar, peta, karakter, ikon aplikasi, serta 61 ilustrasi kursus dan 6 ilustrasi proyek yang unik per bidang dan level.
-- **ASCII detail tinggi** — hero memakai ilustrasi ASCII pilihan pengguna; foto ular Python dirender dengan ramp detail dan warna asli.
+- **ASCII detail tinggi** — hero memakai ilustrasi ASCII pilihan pengguna; setiap track memakai foto realistis dengan ramp detail, warna asli, dan crop penuh (`contain`). Sejumlah track memakai metafora alam seperti taman bunga untuk CSS dan sungai bercabang untuk Git.
 - **Tanpa pelacakan aplikasi** — tidak ada akun, analytics aplikasi, atau iklan.
 
 ## Mulai menggunakan
