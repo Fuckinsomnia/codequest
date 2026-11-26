@@ -142,8 +142,8 @@
 .course-art.level-menengah { --grid-size: 18px; --level-glow: #1d4ed855; }
 .course-art.level-expert { --grid-size: 26px; --level-glow: #7e22ce55; }
 
-.course-art.python-realistic {
-  background: #020617;
+.course-art.photo-ascii {
+  background: #05070a;
 }
 
 .course-art .realistic-ascii {

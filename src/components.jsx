@@ -7,6 +7,7 @@ import { sql } from '@codemirror/lang-sql';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { ArrowRight, BookOpen, Check, Clock } from 'lucide-react';
 import { getCourseArt, getProjectArt } from './ascii-art';
+import { asciiPhotos } from './ascii-photos';
 import RealisticAscii, { detailedRamp } from './RealisticAscii';
 export const route = path => { window.location.hash = path; };
 
@@ -63,8 +64,9 @@ export function CourseArt({ course, large = false }) {
   const artKey = course.artId || course.trackId || course.id || 'codequest';
   const levelClass = course.level ? `level-${course.level.toLowerCase()}` : '';
   const classes = `course-art ${course.theme || 'blue'} ${levelClass} ${large ? 'large' : ''}`;
-  if (course.trackId === 'python' || course.id === 'python') {
-    return <div className={`${classes} python-realistic`} data-art="python-realistic" data-course-id={course.id}><RealisticAscii src={`${import.meta.env.BASE_URL}python-face-v2.jpg`} alt="Wajah ular Python hijau dengan mata dan sisik jelas, dirender sebagai ASCII art berwarna" rows={large ? 72 : 44} characters={detailedRamp} contrast={1.36} brightness={course.level === 'Expert' ? 0.12 : course.level === 'Menengah' ? 0.1 : 0.08} photoOpacity={0.025} dotOpacity={0.96} focusY={0.53}/></div>;
+  const photo = course.artId ? null : asciiPhotos[artKey];
+  if (photo) {
+    return <div className={`${classes} photo-ascii`} data-art={`${artKey}-photo`} data-course-id={course.id}><RealisticAscii src={`${import.meta.env.BASE_URL}${photo.file}`} alt={`Ilustrasi ASCII ${course.title} dari foto realistis`} rows={large ? 72 : 44} characters={detailedRamp} contrast={1.36} brightness={course.level === 'Expert' ? 0.12 : course.level === 'Menengah' ? 0.1 : 0.08} photoOpacity={0.025} dotOpacity={0.96} focusY={photo.focusY || 0.5}/></div>;
   }
   const art = course.artId ? getProjectArt(course.artId) : getCourseArt(course);
   return <div className={classes} data-art={artKey} data-course-id={course.id} aria-hidden="true"><pre className="ascii-scene ascii-scene-course">{art}</pre></div>;

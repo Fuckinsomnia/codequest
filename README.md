@@ -346,10 +346,10 @@ Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bu
 
 ### Sumber aset realistis
 
-- Wajah ular Python: [Pexels photo 19741791](https://www.pexels.com/photo/portrait-of-a-green-tree-python-19741791/), digunakan sesuai [Pexels License](https://www.pexels.com/license/).
+- Setiap track memakai satu foto realistis dari Pexels. Daftar lengkap file, fokus crop, dan tautan sumber ada di `src/ascii-photos.js`, digunakan sesuai [Pexels License](https://www.pexels.com/license/).
 - Hero ASCII: ilustrasi pemandangan detail tinggi yang disediakan pengguna, digunakan sebagai aset lokal `public/hero-ascii-user.jpg`.
 
-Kedua foto menjadi basis bentuk dan warna realistis. Lapisan karakter ASCII digambar di atasnya sehingga hasil akhir tetap terbaca sebagai foto, tetapi memiliki tekstur ASCII yang khas.
+Foto menjadi basis bentuk dan warna. Lapisan karakter ASCII detail tinggi digambar di atasnya sehingga subjek tetap terbaca, tetapi tampil sebagai ASCII berwarna asli.
 
 Referensi renderer: [python-ascii_magic](https://github.com/LeandroBarone/python-ascii_magic) (MIT). CodeQuest mengadaptasi konsep ramp kepadatan karakter, koreksi gamma 2.2, dan boost kanal warna, dengan implementasi canvas sendiri.
 
