@@ -13,6 +13,7 @@ self.addEventListener('install', event => {
       await caches.delete(CACHE_NAME);
       throw error;
     }
+    self.skipWaiting();
   })());
 });
 

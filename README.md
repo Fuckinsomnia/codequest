@@ -402,7 +402,7 @@ Periksa keberadaan `public/runtime/python/` dan `public/runtime/sql/`.
 
 ### Materi lama masih tampil
 
-Buka CodeQuest saat online, lalu klik **Perbarui** pada banner pembaruan atau konfirmasi tombol pembaruan di menu **Aplikasi HP dan offline**. Muat ulang aplikasi dan pastikan service worker versi baru aktif. Jika banner belum muncul, tutup seluruh tab CodeQuest lalu buka kembali; jangan menghapus data situs sebelum mengekspor progres.
+Buka CodeQuest saat online. Service worker versi baru sekarang aktif otomatis dan halaman dimuat ulang tanpa menunggu konfirmasi. Progres tersimpan tetap dipertahankan. Jika browser masih menahan versi lama, tutup seluruh tab CodeQuest lalu buka kembali; jangan menghapus data situs sebelum mengekspor progres.
 
 ### Tes browser gagal menemukan Chrome
 
