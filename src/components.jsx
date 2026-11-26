@@ -8,6 +8,7 @@ import { oneDark } from '@codemirror/theme-one-dark';
 import { ArrowRight, BookOpen, Check, Clock } from 'lucide-react';
 import { getCourseArt, getProjectArt } from './ascii-art';
 import { asciiPhotos } from './ascii-photos';
+import { asciiProjectPhotos } from './ascii-project-photos';
 import RealisticAscii, { detailedRamp } from './RealisticAscii';
 export const route = path => { window.location.hash = path; };
 
@@ -64,9 +65,9 @@ export function CourseArt({ course, large = false }) {
   const artKey = course.artId || course.trackId || course.id || 'codequest';
   const levelClass = course.level ? `level-${course.level.toLowerCase()}` : '';
   const classes = `course-art ${course.theme || 'blue'} ${levelClass} ${large ? 'large' : ''}`;
-  const photo = course.artId ? null : asciiPhotos[artKey];
+  const photo = course.artId ? asciiProjectPhotos[course.artId] : asciiPhotos[artKey];
   if (photo) {
-    return <div className={`${classes} photo-ascii`} data-art={`${artKey}-photo`} data-course-id={course.id}><RealisticAscii src={`${import.meta.env.BASE_URL}${photo.file}`} alt={`Ilustrasi ASCII ${course.title} dari foto realistis`} rows={large ? 72 : 44} characters={detailedRamp} contrast={1.36} brightness={course.level === 'Expert' ? 0.12 : course.level === 'Menengah' ? 0.1 : 0.08} photoOpacity={0.025} dotOpacity={0.96} focusY={photo.focusY || 0.5}/></div>;
+    return <div className={`${classes} photo-ascii`} data-art={`${artKey}-photo`} data-course-id={course.id}><RealisticAscii src={`${import.meta.env.BASE_URL}${photo.file}`} alt={`Ilustrasi ASCII ${course.title || 'proyek'} dari foto realistis`} rows={large ? 72 : 44} characters={detailedRamp} contrast={1.36} brightness={course.level === 'Expert' ? 0.12 : course.level === 'Menengah' ? 0.1 : 0.08} photoOpacity={0.025} dotOpacity={0.96} focusY={photo.focusY || 0.5}/></div>;
   }
   const art = course.artId ? getProjectArt(course.artId) : getCourseArt(course);
   return <div className={classes} data-art={artKey} data-course-id={course.id} aria-hidden="true"><pre className="ascii-scene ascii-scene-course">{art}</pre></div>;
@@ -78,4 +79,4 @@ export function CourseCard({course,state,index}) {
 export function SectionHeading({eyebrow,title,description,children}) { return <div className="section-heading"><div>{eyebrow && <p className="eyebrow accent">{eyebrow}</p>}<h2>{title}</h2>{description && <p>{description}</p>}</div>{children}</div>; }
 export function Empty({title,description,action}) { return <div className="empty"><AsciiMark>{'</>'}</AsciiMark><h3>{title}</h3><p>{description}</p>{action}</div>; }
 export function Stat({icon:Icon,label,value}) { return <div className="stat"><Icon size={23}/><div><strong>{value}</strong><span>{label}</span></div></div>; }
-export function ProjectCard({project,done=0}) { return <a className="project-card" href={`#/projects/${project.id}`}><CourseArt course={{artId:project.id,theme:project.theme}}/><div className="project-body"><span className="eyebrow">GUIDED PROJECT · {project.difficulty.toUpperCase()}</span><h3>{project.title}</h3><p>{project.summary}</p><div className="card-meta"><span>{project.course}</span><span><Clock size={14}/>{project.time}</span></div><div className="project-cta">{done === project.steps.length ? <><Check size={17}/>Selesai</> : <>Mulai membangun <ArrowRight size={16}/></>}</div></div></a>; }
+export function ProjectCard({project,done=0}) { return <a className="project-card" href={`#/projects/${project.id}`}><CourseArt course={{artId:project.id,title:project.title,theme:project.theme}}/><div className="project-body"><span className="eyebrow">GUIDED PROJECT · {project.difficulty.toUpperCase()}</span><h3>{project.title}</h3><p>{project.summary}</p><div className="card-meta"><span>{project.course}</span><span><Clock size={14}/>{project.time}</span></div><div className="project-cta">{done === project.steps.length ? <><Check size={17}/>Selesai</> : <>Mulai membangun <ArrowRight size={16}/></>}</div></div></a>; }

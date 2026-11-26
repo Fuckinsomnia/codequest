@@ -346,8 +346,8 @@ Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bu
 
 ### Sumber aset realistis
 
-- Setiap track memakai satu foto realistis dari Pexels. Daftar lengkap file, fokus crop, dan tautan sumber ada di `src/ascii-photos.js`, digunakan sesuai [Pexels License](https://www.pexels.com/license/).
-- Hero ASCII: ilustrasi pemandangan detail tinggi yang disediakan pengguna, digunakan sebagai aset lokal `public/hero-ascii-user.jpg`.
+- Setiap track dan proyek memakai foto realistis dari Pexels. Daftar lengkap file dan tautan sumber ada di `src/ascii-photos.js` serta `src/ascii-project-photos.js`, digunakan sesuai [Pexels License](https://www.pexels.com/license/).
+- Hero: [St Pierre Island, Seychelles](https://www.pexels.com/photo/blue-sky-above-st-pierre-island-in-seychelles-5048704/) oleh Moritz Feldmann, dirender menjadi ASCII berwarna.
 
 Foto menjadi basis bentuk dan warna. Lapisan karakter ASCII detail tinggi digambar di atasnya sehingga subjek tetap terbaca, tetapi tampil sebagai ASCII berwarna asli.
 
