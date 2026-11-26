@@ -41,6 +41,13 @@
   height: 100%;
 }
 
+.hero-ascii-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
 .home-hero .hero-ascii {
   position: absolute;
   inset: 0;
@@ -50,6 +57,11 @@
   height: 100%;
   object-fit: cover;
   opacity: 1;
+}
+
+.home-hero .hero-ascii-backdrop {
+  opacity: .3;
+  filter: blur(.6px);
 }
 
 .home-hero {
