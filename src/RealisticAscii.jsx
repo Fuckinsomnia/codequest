@@ -11,6 +11,7 @@ export default function RealisticAscii({
   contrast = 1.18,
   brightness = 0,
   saturation = 1.12,
+  photoOpacity = 0.5,
   asciiOpacity = 0.52,
   focusY = 0.5,
   background = '#020617',
@@ -53,8 +54,10 @@ export default function RealisticAscii({
       const sourceHeight = imageAspect > targetAspect ? image.naturalHeight : image.naturalWidth / targetAspect;
       const sourceX = (image.naturalWidth - sourceWidth) / 2;
       const sourceY = Math.min(image.naturalHeight - sourceHeight, Math.max(0, (image.naturalHeight - sourceHeight) * focusY));
+      context.globalAlpha = photoOpacity;
       context.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, rect.width, rect.height);
-      context.fillStyle = 'rgba(2,6,23,.16)';
+      context.globalAlpha = 1;
+      context.fillStyle = 'rgba(2,6,23,.3)';
       context.fillRect(0, 0, rect.width, rect.height);
       sampleContext.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, columns, actualRows);
       const pixels = sampleContext.getImageData(0, 0, columns, actualRows).data;
@@ -116,7 +119,7 @@ export default function RealisticAscii({
       image.onload = null;
       image.onerror = null;
     };
-  }, [src, rows, className, contrast, brightness, saturation, asciiOpacity, focusY, background]);
+  }, [src, rows, className, contrast, brightness, saturation, photoOpacity, asciiOpacity, focusY, background]);
 
   return <canvas ref={canvasRef} className={`realistic-ascii ${className}`} role="img" aria-label={alt}/>;
 }
