@@ -151,6 +151,12 @@
   inset: 0;
 }
 
+.course-hero > .course-art {
+  inset: 0;
+  height: auto;
+  min-height: 100%;
+}
+
 .course-hero > .course-art .realistic-ascii {
   opacity: 1;
 }
