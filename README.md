@@ -346,8 +346,8 @@ Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bu
 
 ### Sumber aset realistis
 
-- Ular Python: [Pexels photo 19080219](https://www.pexels.com/photo/green-snake-on-tree-branch-19080219/), digunakan sesuai [Pexels License](https://www.pexels.com/license/).
-- Lanskap petualangan: [Unsplash rdS3LriPaAc](https://unsplash.com/photos/person-on-stone-fortress-wall-edge-rdS3LriPaAc), digunakan sesuai [Unsplash License](https://unsplash.com/license).
+- Wajah ular Python: [Pexels photo 19741791](https://www.pexels.com/photo/portrait-of-a-green-tree-python-19741791/), digunakan sesuai [Pexels License](https://www.pexels.com/license/).
+- Petualang dan reruntuhan pegunungan: [Pexels photo 35577114](https://www.pexels.com/photo/adventurous-hikers-on-mountain-ruins-at-sunset-35577114/), digunakan sesuai [Pexels License](https://www.pexels.com/license/).
 
 Kedua foto menjadi basis bentuk dan warna realistis. Lapisan karakter ASCII digambar di atasnya sehingga hasil akhir tetap terbaca sebagai foto, tetapi memiliki tekstur ASCII yang khas.
 
