@@ -127,6 +127,7 @@
 .course-art.blue {
   --grid-size: 22px;
   --level-glow: #0f766e55;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,10 +170,10 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 4px 6px;
+  padding: 6px;
   overflow: hidden;
   color: var(--ascii-color);
-  font-size: clamp(6px, .62vw, 8.5px);
+  font-size: clamp(5.5px, .53vw, 7.2px);
   line-height: 1.02;
   text-align: center;
   text-shadow: 0 0 12px color-mix(in srgb, var(--ascii-color) 45%, transparent);
@@ -276,9 +277,13 @@
     opacity: .18;
   }
 
+  .course-art {
+    height: 150px;
+  }
+
   .course-art .ascii-scene-course {
-    padding: 8px 4px;
-    font-size: 6px;
+    padding: 6px 4px;
+    font-size: 5.5px;
   }
 
   .course-art.large .ascii-scene-course {
