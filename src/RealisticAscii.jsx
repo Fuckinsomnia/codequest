@@ -11,6 +11,7 @@ export default function RealisticAscii({
   className = '',
   contrast = 1.38,
   brightness = 0,
+  invert = false,
   saturation = 1.18,
   photoOpacity = 0.04,
   dotOpacity = 0.94,
@@ -67,10 +68,18 @@ export default function RealisticAscii({
       let totalRed = 0;
       let totalGreen = 0;
       let totalBlue = 0;
+      let minLuminance = 1;
+      let maxLuminance = 0;
       for (let offset = 0; offset < pixels.length; offset += 4) {
-        totalRed += pixels[offset];
-        totalGreen += pixels[offset + 1];
-        totalBlue += pixels[offset + 2];
+        const red = pixels[offset];
+        const green = pixels[offset + 1];
+        const blue = pixels[offset + 2];
+        const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+        totalRed += red;
+        totalGreen += green;
+        totalBlue += blue;
+        minLuminance = Math.min(minLuminance, luminance);
+        maxLuminance = Math.max(maxLuminance, luminance);
       }
       const pixelCount = columns * actualRows;
       const averageRed = Math.round(totalRed / pixelCount);
@@ -94,7 +103,9 @@ export default function RealisticAscii({
           const green = pixels[offset + 1];
           const blue = pixels[offset + 2];
           const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
-          const level = clamp((Math.pow(luminance, 0.92) - 0.5) * contrast + 0.5 + brightness);
+          const normalized = (luminance - minLuminance) / Math.max(0.001, maxLuminance - minLuminance);
+          const directed = invert ? 1 - normalized : normalized;
+          const level = clamp((Math.pow(directed, 0.92) - 0.5) * contrast + 0.5 + brightness);
           const character = ramp[Math.round(level * (ramp.length - 1))];
           if (character === ' ') continue;
           const centerX = x * cellWidth + cellWidth / 2;
@@ -162,7 +173,7 @@ export default function RealisticAscii({
       image.onload = null;
       image.onerror = null;
     };
-  }, [src, rows, className, contrast, brightness, saturation, photoOpacity, dotOpacity, focusY, background]);
+  }, [src, rows, className, contrast, brightness, invert, saturation, photoOpacity, dotOpacity, focusY, background]);
 
   return <canvas ref={canvasRef} className={`realistic-ascii ${className}`} role="img" aria-label={alt}/>;
 }
