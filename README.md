@@ -54,7 +54,7 @@ Rilis materi saat ini: **2026.11**.
 - **Offline** — materi, editor, font, ilustrasi ASCII, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
 - **Tema gelap/terang** dan tampilan responsif untuk layar kecil.
 - **Grafis ASCII art** — latar, peta, karakter, ikon aplikasi, serta 61 ilustrasi kursus dan 6 ilustrasi proyek yang unik per bidang dan level.
-- **ASCII realistis berwarna** — foto ular Python dan lanskap petualangan dipadukan dengan lapisan karakter ASCII di canvas.
+- **ASCII detail tinggi** — hero memakai ilustrasi ASCII pilihan pengguna; foto ular Python dirender dengan ramp detail dan warna asli.
 - **Tanpa pelacakan aplikasi** — tidak ada akun, analytics aplikasi, atau iklan.
 
 ## Mulai menggunakan
@@ -347,7 +347,7 @@ Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bu
 ### Sumber aset realistis
 
 - Wajah ular Python: [Pexels photo 19741791](https://www.pexels.com/photo/portrait-of-a-green-tree-python-19741791/), digunakan sesuai [Pexels License](https://www.pexels.com/license/).
-- Pegunungan berhutan: [Green Trees on Mountain Under White Clouds](https://www.pexels.com/photo/green-trees-on-mountain-under-white-clouds-6877846/) oleh Quang Nguyen Vinh, digunakan sesuai [Pexels License](https://www.pexels.com/license/).
+- Hero ASCII: ilustrasi pemandangan detail tinggi yang disediakan pengguna, digunakan sebagai aset lokal `public/hero-ascii-user.jpg`.
 
 Kedua foto menjadi basis bentuk dan warna realistis. Lapisan karakter ASCII digambar di atasnya sehingga hasil akhir tetap terbaca sebagai foto, tetapi memiliki tekstur ASCII yang khas.
 
