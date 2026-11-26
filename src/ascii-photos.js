@@ -1,9 +1,9 @@
 export const asciiPhotos = {
   python: { file: 'ascii-photos/python-wide.jpg', credit: 'https://www.pexels.com/photo/vibrant-green-tree-python-on-a-branch-40415823/' },
-  html: { file: 'ascii-photos/html-nature.jpg', credit: 'https://www.pexels.com/photo/green-trees-branches-against-blue-sky-17001867/' },
-  css: { file: 'ascii-photos/css-nature.jpg', credit: 'https://www.pexels.com/photo/tree-surrounded-by-colorful-flowers-12514759/' },
-  javascript: { file: 'ascii-photos/javascript-nature.jpg', credit: 'https://www.pexels.com/photo/light-over-trees-at-night-16278435/' },
-  sql: { file: 'ascii-photos/sql-nature.jpg', credit: 'https://www.pexels.com/photo/rice-terraces-2161437/' },
+  html: { file: 'ascii-photos/html-green-field.jpg', credit: 'https://www.pexels.com/photo/expansive-green-field-under-clear-blue-sky-35372273/' },
+  css: { file: 'ascii-photos/css-keukenhof.jpg', credit: 'https://www.pexels.com/photo/vibrant-tulip-field-in-full-bloom-at-keukenhof-37094075/' },
+  javascript: { file: 'ascii-photos/javascript-forest.jpg', credit: 'https://www.pexels.com/photo/low-angle-shot-of-forest-trees-14244498/' },
+  sql: { file: 'ascii-photos/sql-deep-sea.jpg', credit: 'https://www.pexels.com/photo/underwater-photography-of-deep-sea-932638/' },
   numpy: { file: 'ascii-photos/numpy-nature.jpg', credit: 'https://www.pexels.com/photo/honeycomb-structure-in-beehive-20012002/' },
   pandas: { file: 'ascii-photos/pandas-nature.jpg', credit: 'https://www.pexels.com/photo/wood-light-dawn-landscape-8589448/' },
   matplotlib: { file: 'ascii-photos/matplotlib-wide.jpg', credit: 'https://www.pexels.com/photo/aerial-view-of-desert-river-patterns-37588146/' },
