@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 
+const ramp = ' .:-=+*#%@';
 const clamp = value => Math.min(1, Math.max(0, value));
 const clampChannel = value => Math.min(255, Math.max(0, value));
 
@@ -41,7 +42,7 @@ export default function RealisticAscii({
 
       const actualRows = Math.max(18, Math.round(rows));
       const fontSize = rect.height / actualRows;
-      const cellWidth = fontSize * 0.78;
+      const cellWidth = fontSize * 0.66;
       const columns = Math.max(32, Math.ceil(rect.width / cellWidth));
       const sample = document.createElement('canvas');
       sample.width = columns;
@@ -82,6 +83,9 @@ export default function RealisticAscii({
       context.fillStyle = glow;
       context.fillRect(0, 0, rect.width, rect.height);
       context.globalAlpha = dotOpacity;
+      context.font = `700 ${fontSize * 1.08}px "Courier New", monospace`;
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
 
       for (let y = 0; y < actualRows; y++) {
         for (let x = 0; x < columns; x++) {
@@ -91,7 +95,8 @@ export default function RealisticAscii({
           const blue = pixels[offset + 2];
           const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
           const level = clamp((Math.pow(luminance, 0.92) - 0.5) * contrast + 0.5 + brightness);
-          const size = Math.max(0.55, fontSize * (0.1 + Math.pow(level, 0.72) * 0.82));
+          const character = ramp[Math.round(level * (ramp.length - 1))];
+          if (character === ' ') continue;
           const centerX = x * cellWidth + cellWidth / 2;
           const centerY = y * fontSize + fontSize / 2;
 
@@ -122,7 +127,7 @@ export default function RealisticAscii({
           context.fillStyle = `rgb(${Math.round(inkRed)},${Math.round(inkGreen)},${Math.round(inkBlue)})`;
 
           context.globalAlpha = dotOpacity * (level < 0.08 ? 0.32 : 0.92);
-          context.fillRect(centerX - size / 2, centerY - size / 2, size, size);
+          context.fillText(character, centerX, centerY);
         }
       }
 
