@@ -188,9 +188,11 @@ function ExerciseDetail({ exercise, state, setState, notify }) {
 }
 
 export default function ExercismLibrary({ state, setState, notify, slug }) {
+  const requestedTrack = new URLSearchParams(window.location.hash.includes('?') ? window.location.hash.slice(window.location.hash.indexOf('?') + 1) : '').get('track');
   const [query, setQuery] = useState('');
-  const [track, setTrack] = useState('Semua');
+  const [track, setTrack] = useState(['python', 'javascript', 'sqlite'].includes(requestedTrack) ? requestedTrack : 'Semua');
   const [difficulty, setDifficulty] = useState('Semua');
+  useEffect(() => setTrack(['python', 'javascript', 'sqlite'].includes(requestedTrack) ? requestedTrack : 'Semua'), [requestedTrack]);
   const completed = useMemo(() => new Set(state.completed), [state.completed]);
   const exercise = slug ? library.exercises.find(item => item.slug === slug) : null;
 
