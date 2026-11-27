@@ -217,6 +217,7 @@
 .ascii-character.variant-1 { color: #7b9dff; text-shadow: 0 0 14px #7b9dff66; }
 .ascii-character.variant-2 { color: #be80e6; text-shadow: 0 0 14px #be80e666; }
 .ascii-character.variant-3 { color: #6bc69d; text-shadow: 0 0 14px #6bc69d66; }
+.ascii-character.ladybug.variant-0 { color: #ff7474; text-shadow: 0 0 14px #ff747466; }
 
 .quest-art .ascii-character {
   animation: float 3s ease-in-out infinite;
