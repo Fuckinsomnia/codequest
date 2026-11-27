@@ -70,6 +70,7 @@ export default function Practice({ state }) {
           <span><Code2 size={16} aria-hidden="true" />{challengeCount} tantangan</span>
           <span><CheckCircle2 size={16} aria-hidden="true" />{completedCount}/{challengeCount} selesai</span>
         </div>
+        <a className="button blue small exercism-entry" href="#/practice/exercism">Jelajahi materi Exercism<ArrowRight size={16} aria-hidden="true" /></a>
       </div>
     </header>
 

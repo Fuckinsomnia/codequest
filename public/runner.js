@@ -35,7 +35,7 @@ self.onmessage = async ({ data }) => {
     } else if (data.language === 'sql') {
       const db = new engine.Database();
       try {
-        db.run("CREATE TABLE learners (id INTEGER PRIMARY KEY, name TEXT, xp INTEGER, track TEXT); INSERT INTO learners VALUES (1,'Ayu',120,'Python'),(2,'Bima',80,'HTML'),(3,'Citra',200,'Python'),(4,'Danu',50,'SQL'),(5,'Eka',150,'HTML');");
+        db.run(data.setupSql ?? "CREATE TABLE learners (id INTEGER PRIMARY KEY, name TEXT, xp INTEGER, track TEXT); INSERT INTO learners VALUES (1,'Ayu',120,'Python'),(2,'Bima',80,'HTML'),(3,'Citra',200,'Python'),(4,'Danu',50,'SQL'),(5,'Eka',150,'HTML');");
         const results = db.exec(data.code);
         for (const result of results) {
           emit(result.columns.join(' | '));

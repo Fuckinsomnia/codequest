@@ -1,4 +1,4 @@
-import React,{useEffect,useRef,useState} from 'react';
+import React,{lazy,Suspense,useEffect,useRef,useState} from 'react';
 import {ArrowRight, ArrowLeft, Search, Moon, Sun, ChevronDown, ChevronRight, BookOpen, Trophy, Flame, Code2, Check, Zap, Clock, X, Menu, Download, Upload, Trash2, Mountain, Compass, Flag, ShieldCheck, Sparkles, Play, Plus, Save, ExternalLink, Bookmark, CheckCircle2, Smartphone} from 'lucide-react';
 import {courses,lessons,journeys,categories,courseLevels,contentRelease} from './data';
 import {projects} from './data/projects';
@@ -9,6 +9,7 @@ import RealisticAscii, { detailedRamp } from './RealisticAscii';
 import Lesson from './Lesson';
 import Pwa from './Pwa';
 import Practice from './Practice';
+const ExercismLibrary=lazy(()=>import('./ExercismLibrary'));
 
 function Header({state,light,setLight,onInstall}) {
   const [mobile,setMobile]=useState(false);
@@ -89,6 +90,6 @@ export default function App({initialState}){
   useEffect(()=>{document.title=`${lesson?.title||course?.title||({courses:'Semua Kursus',practice:'Coding Challenges',projects:'Proyek',builds:'Builds',progress:'Petualanganku','30-days':'30 Hari Coding'}[section])||'Petualangan Coding-mu'} — CodeQuest`;},[path]);
   let page;
   if(section==='lesson'&&course&&lesson)page=<Lesson key={lesson.id} course={course} lesson={lesson} state={state} setState={setState} notify={setToast}/>;
-  else {let content;if(!section)content=<Home state={state}/>;else if(section==='courses')content=<Catalog state={state} searchAuto={path.includes('?search')}/>;else if(section==='course'&&course)content=<Course key={course.id} course={course} state={state}/>;else if(section==='practice')content=<Practice state={state}/>;else if(section==='projects')content=<Projects key={id||'list'} state={state} setState={setState} id={id}/>;else if(section==='builds')content=<Builds key={id||'list'} state={state} setState={setState} id={id} notify={setToast}/>;else if(section==='progress')content=<Progress state={state} setState={setState} notify={setToast}/>;else if(section==='30-days')content=<Daily state={state}/>;else content=<NotFound/>;page=<><Header state={state} light={light} setLight={setLight} onInstall={()=>setShowPwa(true)}/>{content}{!(section==='builds'&&id)&&<Footer/>}</>;}
+  else {let content;if(!section)content=<Home state={state}/>;else if(section==='courses')content=<Catalog state={state} searchAuto={path.includes('?search')}/>;else if(section==='course'&&course)content=<Course key={course.id} course={course} state={state}/>;else if(section==='practice')content=id==='exercism'?<Suspense fallback={<main className="practice-page"><div className="container section">Memuat materi Exercism…</div></main>}><ExercismLibrary state={state} setState={setState} notify={setToast} slug={lessonId}/></Suspense>:<Practice state={state}/>;else if(section==='projects')content=<Projects key={id||'list'} state={state} setState={setState} id={id}/>;else if(section==='builds')content=<Builds key={id||'list'} state={state} setState={setState} id={id} notify={setToast}/>;else if(section==='progress')content=<Progress state={state} setState={setState} notify={setToast}/>;else if(section==='30-days')content=<Daily state={state}/>;else content=<NotFound/>;page=<><Header state={state} light={light} setLight={setLight} onInstall={()=>setShowPwa(true)}/>{content}{!(section==='builds'&&id)&&<Footer/>}</>;}
   return <>{page}<Pwa open={showPwa} close={()=>setShowPwa(false)} notify={setToast}/>{toast&&<div className="toast" role="status"><Check size={17}/>{toast}<button aria-label="Tutup notifikasi" onClick={()=>setToast('')}><X size={16}/></button></div>}</>;
 }

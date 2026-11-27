@@ -1,4 +1,4 @@
-export function runCode(language, code, stdin, onStatus = () => {}) {
+export function runCode(language, code, stdin, onStatus = () => {}, setupSql = null) {
   let worker;
   let timer;
   let settle;
@@ -13,7 +13,7 @@ export function runCode(language, code, stdin, onStatus = () => {}) {
         clearTimeout(timer);
         onStatus('Menjalankan kode…');
         timer = setTimeout(() => settle({ error: 'Batas waktu 5 detik terlampaui. Periksa loop atau tekan Run untuk mencoba lagi.' }), 5000);
-        worker.postMessage({ command: 'run', language, code, stdin });
+        worker.postMessage({ command: 'run', language, code, stdin, setupSql });
       } else if (data.status === 'result' || data.status === 'error') settle(data);
     };
     worker.postMessage({ command: 'init', language });
@@ -23,7 +23,7 @@ export function runCode(language, code, stdin, onStatus = () => {}) {
 
 export function makePreview(html, assertions = [], token = '', scripts = '') {
   const harness = function (rules, key, userScript) {
-    window.addEventListener('DOMContentLoaded', () => {
+    const start = () => {
       if (userScript) { const script = document.createElement('script'); script.textContent = userScript; document.body.append(script); }
       requestAnimationFrame(() => {
         const failures = [];
@@ -54,7 +54,9 @@ export function makePreview(html, assertions = [], token = '', scripts = '') {
         }
         parent.postMessage({ kind: 'preview-result', token: key, failures }, '*');
       });
-    });
+    };
+    if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', start, { once: true });
+    else start();
   };
   const safe = value => JSON.stringify(value).replace(/</g, '\\u003c');
   const csp = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'">`;

@@ -47,6 +47,7 @@ Rilis materi saat ini: **2026.11**.
 - **Progres lokal** — XP, pelajaran selesai, streak harian, lencana bab, bookmark, catatan, dan draft kode tersimpan otomatis.
 - **Sertifikat belajar mandiri** — terbuka setelah seluruh pelajaran dalam satu kursus selesai; dapat dicetak atau disimpan sebagai PDF.
 - **Coding Challenges** — latihan tambahan dari bank soal yang tersedia.
+- **Materi Exercism** — 132 masalah latihan lintas bahasa yang tersaring, dengan 320 varian editor lokal Python/JavaScript/SQLite, instruksi offline, progres terpisah, dan tautan sumber.
 - **Guided Projects** — enam proyek dengan langkah dan checklist penilaian mandiri.
 - **30 Hari Coding** — tantangan membangun kebiasaan belajar harian.
 - **Builds** — ruang membuat website dengan HTML, CSS, dan JavaScript, lengkap dengan live preview, penyimpanan lokal, dan unduhan HTML. Maksimal 30 proyek.
@@ -253,7 +254,7 @@ Materi **tidak diperbarui otomatis dari sumber eksternal**. Pembaruan dilakukan 
 npm test
 ```
 
-Menguji jumlah serta keunikan kursus/pelajaran, level, ID lama, struktur kuis, validasi impor, XP, dan streak. Tes ini tidak memerlukan server.
+Menguji jumlah serta keunikan kursus/pelajaran, level, ID lama, struktur kuis, validasi impor, XP, streak, dan integritas perpustakaan Exercism. Tes ini tidak memerlukan server.
 
 ### Tes browser
 
@@ -269,7 +270,7 @@ Terminal kedua:
 npm run test:browser
 ```
 
-Suite memeriksa editor Python/JavaScript/SQLite, HTML/CSS, kuis, progres, catatan, Builds, proyek, sertifikat, tema, mobile 320/390 px, dan seluruh layout kursus.
+Suite memeriksa editor Python/JavaScript/SQLite, HTML/CSS, kuis, progres, catatan, Builds, proyek, sertifikat, tema, perpustakaan Exercism, mobile 320/390 px, dan seluruh layout kursus.
 
 Konfigurasi bawaan memakai Chrome di:
 
@@ -341,6 +342,7 @@ npm run build -- --base=/nama-repository/
 - **Manifest PWA** untuk instalasi, ikon, dan shortcut.
 - **Font lokal** Press Start 2P dan Mulish; tidak memerlukan Google Fonts.
 - **GitHub Pages** sebagai hosting statis.
+- **Perpustakaan Exercism statis** di `src/data/exercism-library.json`; impor ulang dapat dilakukan dengan `npm run content:exercism`.
 
 Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bundle, menghitung versi cache, lalu menyuntikkan daftar precache ke `sw.js`.
 
@@ -352,6 +354,49 @@ Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bu
 Foto menjadi basis bentuk dan warna. Lapisan karakter ASCII detail tinggi digambar di atasnya sehingga subjek tetap terbaca, tetapi tampil sebagai ASCII berwarna asli.
 
 Referensi renderer: [python-ascii_magic](https://github.com/LeandroBarone/python-ascii_magic) (MIT). CodeQuest mengadaptasi konsep ramp kepadatan karakter, koreksi gamma 2.2, dan boost kanal warna, dengan implementasi canvas sendiri.
+
+## Materi dan lisensi Exercism
+
+Perpustakaan latihan mengambil masalah unik dari [Exercism](https://exercism.org) dan repositori MIT berikut:
+
+- [exercism/problem-specifications](https://github.com/exercism/problem-specifications)
+- [exercism/python](https://github.com/exercism/python)
+- [exercism/javascript](https://github.com/exercism/javascript)
+- [exercism/sqlite](https://github.com/exercism/sqlite)
+
+Impor menyimpan commit sumber di `src/data/exercism-library.json`, membuang 13 masalah deprecated dan 7 masalah yang tumpang tindih dengan materi CodeQuest. Instruksi mengikuti teks sumber berbahasa Inggris dan tetap menautkan sumber asli. Editor lokal menjalankan kode, tetapi tidak menggantikan test suite, analisis otomatis, atau mentoring Exercism.
+
+Untuk memperbarui materi:
+
+```bash
+npm run content:exercism
+npm test
+```
+
+Importer memerlukan Git dan akses jaringan ke GitHub, lalu mengganti `src/data/exercism-library.json`.
+
+### MIT License
+
+Copyright (c) 2014, 2019, 2021 Exercism<br>
+Copyright (c) 2021 Exercism
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ## Keamanan dan batasan editor
 

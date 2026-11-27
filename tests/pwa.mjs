@@ -122,14 +122,20 @@ try {
   note('New expert quiz completion persists offline');
   await page.goto(`${origin}${base}#/builds/new`);
   await page.getByRole('textbox',{name:'Nama proyek'}).fill('Karya offline HP');
+  let previewReady=false;
   for(let attempt=0;attempt<20;attempt++) {
     const previous=await page.locator('iframe').getAttribute('srcdoc');
     await page.getByRole('button',{name:'Run preview'}).click();
     await page.waitForFunction(previous=>document.querySelector('iframe')?.getAttribute('srcdoc')!==previous,previous);
     await page.locator('iframe').scrollIntoViewIfNeeded();
-    await page.frameLocator('iframe').getByRole('button',{name:'Katakan halo'}).click();
-    await page.frameLocator('iframe').getByText('Halo, petualang! Teruslah membuat sesuatu.').waitFor();
+    try {
+      await page.frameLocator('iframe').getByRole('button',{name:'Katakan halo'}).click({timeout:1500});
+      await page.frameLocator('iframe').getByText('Halo, petualang! Teruslah membuat sesuatu.').waitFor({timeout:1500});
+      previewReady=true;
+      break;
+    } catch {}
   }
+  assert.ok(previewReady,'Builds preview should execute its sandboxed JavaScript');
   await page.getByRole('button',{name:'Simpan',exact:true}).click();
   await waitSaved(record=>record?.state.builds.some(build=>build.title==='Karya offline HP'));
   note('Builds preview and save work offline');
@@ -172,6 +178,9 @@ try {
   await page.screenshot({path:resolve(shots,'practice-mobile.png')});
   const width=await page.evaluate(()=>({viewport:innerWidth,content:document.documentElement.scrollWidth}));assert.ok(width.content<=width.viewport+1);
   note('Visual challenge packs, drilldown, filters and empty state work offline on mobile');
+  await page.goto(`${origin}${base}#/practice/exercism`);await page.getByRole('heading',{name:'Materi Exercism',exact:true}).waitFor();assert.equal(await page.locator('[data-exercism-card]').count(),132);
+  await page.goto(`${origin}${base}#/practice/exercism/two-fer?lang=python`);await page.locator('.file-tab').filter({hasText:'latihan.py'}).waitFor();await page.locator('.cm-content').fill('print("Exercism offline")');await page.getByRole('button',{name:'Run',exact:true}).click();await page.locator('.exercism-output pre').filter({hasText:'Exercism offline'}).waitFor({timeout:60000});await page.getByRole('checkbox').check();await page.getByRole('button',{name:'Tandai selesai',exact:true}).click();await waitSaved(record=>record?.state.completed.includes('exercism-python-two-fer'));await page.screenshot({path:resolve(shots,'exercism-offline-mobile.png')});
+  note('Exercism instructions, local Python editor and progress work offline on mobile');
   const beforeRestart=(await dbRecord(page)).state;
   await context.close();
   context=await launch();
