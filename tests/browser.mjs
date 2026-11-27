@@ -120,6 +120,7 @@ try{
   assert.equal(await page.locator('.certificate h1').innerText(),'Penguji cadangan');
   await page.getByRole('button',{name:'Tutup sertifikat'}).click();note('Completing a course unlocks the independent certificate');
   await navigate('/#/progress');await page.getByRole('button',{name:'Aktifkan mode terang'}).click();await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');await page.reload();await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');
-  await page.screenshot({path:path('progress-light.png')});await page.getByRole('button',{name:'Aktifkan mode gelap'}).click();note('Theme persists after reload');
+  const lightColors=await page.evaluate(()=>{const color=selector=>getComputedStyle(document.querySelector(selector));return {header:color('.site-header').backgroundColor,footer:color('.site-footer').backgroundColor,nav:color('.site-header nav>a,.nav-dropdown>a').color,menu:color('.dropdown-menu').backgroundColor,menuText:color('.dropdown-menu a').color,footerText:color('.footer-grid>div').color};});assert.equal(lightColors.header,'rgb(255, 255, 255)');assert.equal(lightColors.footer,'rgb(255, 255, 255)');assert.equal(lightColors.nav,'rgb(28, 41, 68)');assert.equal(lightColors.menu,'rgb(255, 255, 255)');assert.equal(lightColors.menuText,'rgb(28, 41, 68)');assert.equal(lightColors.footerText,'rgb(76, 97, 126)');
+  await page.screenshot({path:path('progress-light.png')});await page.getByRole('button',{name:'Aktifkan mode gelap'}).click();note('Theme persists; light header footer and dropdowns have readable contrast');
   assert.deepEqual(errors,[]);note('No browser JavaScript errors');console.log(`\n${report.length} groups passed.`);
 }finally{await browser.close();}
