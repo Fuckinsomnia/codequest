@@ -100,30 +100,19 @@
   z-index: 2;
 }
 
-.hero-content {
-  isolation: isolate;
-}
-
-.hero-content::before {
-  content: "";
-  position: absolute;
-  inset: -42px -90px -48px;
-  z-index: -1;
-  background: radial-gradient(ellipse at center, #020617ed 0, #020617c9 38%, #02061773 62%, #02061700 78%);
-  filter: blur(8px);
-  pointer-events: none;
-}
-
 .home-hero h1 {
-  -webkit-text-stroke: 1px #020617;
-  text-shadow: 3px 3px 0 #020617, 5px 6px 0 #542448, 0 0 24px #020617;
+  color: #ffffff;
+}
+
+.home-hero h1 span {
+  color: #ffd21a;
 }
 
 .hero-eyebrow,
 .hero-description,
 .hero-benefits,
 .hero-bottom {
-  text-shadow: 0 2px 4px #020617, 0 0 14px #020617;
+  color: #fef08a;
 }
 
 .catalog-hero {
@@ -320,8 +309,7 @@
 
 .home-hero h1 {
   letter-spacing: -2px;
-  -webkit-text-stroke: 1px #020617;
-  text-shadow: 3px 3px 0 #020617, 5px 6px 0 #542448, 0 0 24px #020617;
+  text-shadow: 3px 0 #542448, -3px 0 #542448, 0 -3px #542448, 0 4px #542448, 0 0 24px #f9731666;
 }
 
 @media (max-width: 720px) {
