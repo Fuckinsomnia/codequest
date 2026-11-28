@@ -12,7 +12,8 @@
     "test:pwa": "npm run build && node tests/pwa.mjs",
     "postinstall": "node setup-runtime.mjs",
     "content:exercism": "node scripts/import-exercism.mjs",
-    "content:exercism:tracks": "node scripts/import-exercism-tracks.mjs"
+    "content:exercism:tracks": "node scripts/import-exercism-tracks.mjs",
+    "content:w3schools": "node scripts/import-w3schools.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",

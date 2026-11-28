@@ -48,6 +48,7 @@ Rilis materi saat ini: **2026.11**.
 - **Sertifikat belajar mandiri** — terbuka setelah seluruh pelajaran dalam satu kursus selesai; dapat dicetak atau disimpan sebagai PDF.
 - **Coding Challenges** — latihan tambahan dari bank soal yang tersedia.
 - **Materi Exercism** — 132 masalah unik dengan 320 varian editor lokal Python/JavaScript/SQLite, serta katalog **85 bahasa dan 8.317 varian latihan** yang dapat dicari dan difilter.
+- **Materi W3Schools** — katalog **35 topik dan 3.946 materi** (3.878 tutorial + 68 latihan) dengan ringkasan orisinal berbahasa Indonesia, filter, pencarian, dan tautan resmi.
 - **Guided Projects** — enam proyek dengan langkah dan checklist penilaian mandiri.
 - **30 Hari Coding** — tantangan membangun kebiasaan belajar harian.
 - **Builds** — ruang membuat website dengan HTML, CSS, dan JavaScript, lengkap dengan live preview, penyimpanan lokal, dan unduhan HTML. Maksimal 30 proyek.
@@ -342,7 +343,7 @@ npm run build -- --base=/nama-repository/
 - **Manifest PWA** untuk instalasi, ikon, dan shortcut.
 - **Font monospace sistem** melalui `src/ascii-ui.css`; tidak memerlukan Google Fonts atau aset font eksternal.
 - **GitHub Pages** sebagai hosting statis.
-- **Perpustakaan Exercism statis** di `src/data/exercism-library.json` dan katalog semua bahasa di `src/data/exercism-tracks.json`; keduanya dapat diperbarui melalui script impor.
+- **Perpustakaan Exercism statis** di `src/data/exercism-library.json` dan `src/data/exercism-tracks.json`, serta katalog W3Schools di `src/data/w3schools-materials.json`; semuanya dapat diperbarui melalui script impor.
 
 Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bundle, menghitung versi cache, lalu menyuntikkan daftar precache ke `sw.js`.
 
@@ -371,10 +372,15 @@ Untuk memperbarui materi:
 ```bash
 npm run content:exercism
 npm run content:exercism:tracks
+npm run content:w3schools
 npm test
 ```
 
 Importer materi unik memerlukan Git dan akses jaringan ke GitHub. Importer katalog semua bahasa membaca daftar track Exercism dan `config.json` resmi, lalu mengganti `src/data/exercism-tracks.json`.
+
+### Katalog W3Schools
+
+Menu **Materi** mengambil judul, topik, dan URL dari sitemap resmi W3Schools. CodeQuest tidak menyalin artikel lengkap; ringkasan katalog ditulis sendiri dan setiap kartu menautkan ke sumber asli. Perbarui katalog dengan `npm run content:w3schools`.
 
 ### MIT License
 
