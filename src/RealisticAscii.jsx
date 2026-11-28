@@ -41,8 +41,11 @@ export default function RealisticAscii({
       const context = canvas.getContext('2d');
       if (!context) return;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
-      context.fillStyle = background;
-      context.fillRect(0, 0, rect.width, rect.height);
+      if (background === 'transparent') context.clearRect(0, 0, rect.width, rect.height);
+      else {
+        context.fillStyle = background;
+        context.fillRect(0, 0, rect.width, rect.height);
+      }
 
       const actualRows = Math.max(18, Math.round(rows));
       const fontSize = rect.height / actualRows;
@@ -54,8 +57,11 @@ export default function RealisticAscii({
       const sampleContext = sample.getContext('2d', { willReadFrequently: true });
       if (!sampleContext) return;
       const characterAspect = cellWidth / fontSize;
-      sampleContext.fillStyle = background;
-      sampleContext.fillRect(0, 0, columns, actualRows);
+      if (background === 'transparent') sampleContext.clearRect(0, 0, columns, actualRows);
+      else {
+        sampleContext.fillStyle = background;
+        sampleContext.fillRect(0, 0, columns, actualRows);
+      }
 
       if (fit === 'contain') {
         const sampleScale = Math.min(columns / (image.naturalWidth / characterAspect), actualRows / image.naturalHeight);
@@ -92,7 +98,10 @@ export default function RealisticAscii({
       let totalBlue = 0;
       let minLuminance = 1;
       let maxLuminance = 0;
+      let visiblePixels = 0;
       for (let offset = 0; offset < pixels.length; offset += 4) {
+        if (pixels[offset + 3] < 16) continue;
+        visiblePixels += 1;
         const red = pixels[offset];
         const green = pixels[offset + 1];
         const blue = pixels[offset + 2];
@@ -103,10 +112,10 @@ export default function RealisticAscii({
         minLuminance = Math.min(minLuminance, luminance);
         maxLuminance = Math.max(maxLuminance, luminance);
       }
-      const pixelCount = columns * actualRows;
-      const averageRed = Math.round(totalRed / pixelCount);
-      const averageGreen = Math.round(totalGreen / pixelCount);
-      const averageBlue = Math.round(totalBlue / pixelCount);
+      const pixelCount = visiblePixels;
+      const averageRed = Math.round(totalRed / Math.max(1, pixelCount));
+      const averageGreen = Math.round(totalGreen / Math.max(1, pixelCount));
+      const averageBlue = Math.round(totalBlue / Math.max(1, pixelCount));
       const glow = context.createRadialGradient(rect.width * 0.5, rect.height * 0.42, 0, rect.width * 0.5, rect.height * 0.42, rect.width * 0.65);
       glow.addColorStop(0, `rgba(${averageRed},${averageGreen},${averageBlue},.2)`);
       glow.addColorStop(0.55, `rgba(${averageRed},${averageGreen},${averageBlue},.07)`);
@@ -121,6 +130,7 @@ export default function RealisticAscii({
       for (let y = 0; y < actualRows; y++) {
         for (let x = 0; x < columns; x++) {
           const offset = (y * columns + x) * 4;
+          if (pixels[offset + 3] < 16) continue;
           const red = pixels[offset];
           const green = pixels[offset + 1];
           const blue = pixels[offset + 2];
@@ -165,8 +175,11 @@ export default function RealisticAscii({
       if (cancelled) return;
       const context = canvas.getContext('2d');
       if (context) {
-        context.fillStyle = background;
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        if (background === 'transparent') context.clearRect(0, 0, canvas.width, canvas.height);
+        else {
+          context.fillStyle = background;
+          context.fillRect(0, 0, canvas.width, canvas.height);
+        }
       }
     };
     image.src = src;

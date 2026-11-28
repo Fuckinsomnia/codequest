@@ -52,14 +52,22 @@ export function AsciiMark({ children = '</>' }) {
 export function Coin() { return <span className="coin" aria-hidden="true">{'</>'}</span>; }
 export function Logo() { return <a className="logo" href="#/" aria-label="CodeQuest, beranda"><Coin/><span>CodeQuest</span></a>; }
 export function PixelCharacter({ variant = 0, size = 56 }) {
-  const ladybugs = [
-    `    \\  /\n    .--.\n   / o o \\\n   \\ --- /\n  .-''-.\n / o  o  o \\\n(  o  o  o  )\n \\ o  o  o /\n  '-...-'\n   /|  |\\\n  /_|__|_\\`,
-    `    \\  /\n    .--.\n   / > < \\\n   \\ --- /\n  .-''-.\n /o o  o o\\\n( o  oo  o )\n \\o o  o o/\n  '-...-'\n   /|  |\\\n  /_|__|_\\`,
-    `    \\  /\n    .--.\n   / ^ ^ \\\n   \\ --- /\n  .-''-.\n /  o o  \\\n( o  o  o )\n \\  o o  /\n  '-...-'\n   /|  |\\\n  /_|__|_\\`,
-    `    \\  /\n    .--.\n   / - - \\\n   \\ --- /\n  .-''-.\n /o  o o o\\\n(o o  o o)\n \\o  o o o/\n  '-...-'\n   /|  |\\\n  /_|__|_\\`,
-  ];
-  const art = ladybugs[variant % 4];
-  return <pre className={`ascii-character ladybug variant-${variant % 4}`} style={{fontSize:`${Math.max(5, Math.round(size / 12))}px`, width:size, height:size}} role="img" aria-label="Karakter ladybug petualang">{art}</pre>;
+  return <div className={`ascii-character ladybug variant-${variant % 4}`} style={{width:size, height:size}}>
+    <RealisticAscii
+      src={`${import.meta.env.BASE_URL}mascot-ladybug.png`}
+      alt="Karakter ladybug petualang"
+      rows={Math.max(24, Math.round(size / 3.2))}
+      characters={detailedRamp}
+      className="ladybug-canvas"
+      contrast={1.22}
+      brightness={0.04}
+      saturation={1.22}
+      photoOpacity={0.06}
+      dotOpacity={0.92}
+      fit="contain"
+      background="transparent"
+    />
+  </div>;
 }
 export function ProgressBar({ value, label }) { return <div className="progress-track" role="progressbar" aria-label={label || 'Progres'} aria-valuenow={Math.round(value)} aria-valuemin={0} aria-valuemax={100}><span style={{width:`${Math.min(100,Math.max(0,value))}%`}}/></div>; }
 export function Editor({ value, onChange, language, height = '360px', readOnly = false }) {

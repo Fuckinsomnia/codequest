@@ -217,7 +217,25 @@
 .ascii-character.variant-1 { color: #7b9dff; text-shadow: 0 0 14px #7b9dff66; }
 .ascii-character.variant-2 { color: #be80e6; text-shadow: 0 0 14px #be80e666; }
 .ascii-character.variant-3 { color: #6bc69d; text-shadow: 0 0 14px #6bc69d66; }
-.ascii-character.ladybug.variant-0 { color: #ff7474; text-shadow: 0 0 14px #ff747466; }
+.ascii-character.ladybug {
+  position: relative;
+}
+
+.ascii-character.ladybug .ladybug-canvas {
+  filter: drop-shadow(0 0 7px #ff747455);
+}
+
+.ascii-character.ladybug.variant-1 .ladybug-canvas {
+  filter: hue-rotate(38deg) drop-shadow(0 0 7px #ffb86b55);
+}
+
+.ascii-character.ladybug.variant-2 .ladybug-canvas {
+  filter: hue-rotate(122deg) drop-shadow(0 0 7px #8ce99a55);
+}
+
+.ascii-character.ladybug.variant-3 .ladybug-canvas {
+  filter: hue-rotate(238deg) drop-shadow(0 0 7px #b197ff55);
+}
 
 .quest-art .ascii-character {
   animation: float 3s ease-in-out infinite;
@@ -306,7 +324,7 @@
 
   .quest-art .ascii-character {
     width: min(144px, 100%) !important;
-    height: auto !important;
+    height: min(144px, 40vw) !important;
   }
 
   .logo {

@@ -76,7 +76,7 @@ try {
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cache=await page.evaluate(async()=>{const names=(await caches.keys()).filter(name=>name.startsWith('codequest-offline-'));const cache=await caches.open(names[0]);return {names,urls:(await cache.keys()).map(request=>new URL(request.url).pathname)};});
   assert.equal(cache.names.length,1);
-  for(const asset of ['index.html','manifest.webmanifest','icon-512.png','home-seychelles.jpg','runner.js','runtime/python/pyodide.asm.wasm','runtime/python/python_stdlib.zip','runtime/sql/sql-wasm.wasm']) assert.ok(cache.urls.includes(`${base}${asset}`),asset);
+  for(const asset of ['index.html','manifest.webmanifest','icon-512.png','home-seychelles.jpg','mascot-ladybug.png','runner.js','runtime/python/pyodide.asm.wasm','runtime/python/python_stdlib.zip','runtime/sql/sql-wasm.wasm']) assert.ok(cache.urls.includes(`${base}${asset}`),asset);
  for(const photo of Object.values(asciiPhotos)) assert.ok(cache.urls.includes(`${base}${photo.file}`),photo.file);
  for(const photo of Object.values(asciiProjectPhotos)) assert.ok(cache.urls.includes(`${base}${photo.file}`),photo.file);
   assert.ok(cache.urls.every(url=>url.startsWith(base)));
