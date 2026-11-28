@@ -1081,29 +1081,89 @@
   color: var(--bg);
 }
 
+.practice-page .exercism-catalog-page .practice-intro h1,
+.practice-page .exercism-catalog-page .practice-intro h1 + p,
+.practice-page .exercism-catalog-page .practice-overview {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.practice-page .exercism-catalog-page .practice-intro h1 + p {
+  max-width: 760px;
+}
+
+.practice-page .exercism-catalog-page .practice-overview {
+  justify-content: center;
+}
+
 .practice-page .exercism-catalog-tools {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(210px, .55fr) minmax(150px, .35fr);
+  align-items: stretch;
+}
+
+.practice-page .exercism-catalog-tools select {
+  width: 100%;
+  min-width: 0;
+}
+
+.practice-page .exercism-catalog-page .practice-results {
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.practice-page .exercism-catalog-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(235px, 100%), 1fr));
+  gap: 18px;
 }
 
 .practice-page .exercism-catalog-card {
-  min-height: 300px;
+  min-height: 244px;
+  padding: 18px;
+}
+
+.practice-page .exercism-catalog-card h2 {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 16px 0 10px;
+  font-size: 12px;
+  line-height: 1.75;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .practice-page .exercism-catalog-track {
   flex: 0;
-  margin: -4px 0 14px !important;
+  overflow: hidden;
+  margin: 0 0 14px !important;
   color: var(--practice-accent) !important;
   font-family: var(--ascii);
   font-size: 11px !important;
   font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.practice-page .exercism-catalog-concepts {
-  flex: 0;
-  margin: 0 0 16px !important;
-  font-size: 10px !important;
-  line-height: 1.6 !important;
+.practice-page .exercism-catalog-card .exercism-card-tracks {
+  min-height: 24px;
+  align-items: center;
+}
+
+.practice-page .exercism-catalog-card .exercism-card-bottom {
+  margin-top: auto;
+}
+
+.practice-page .exercism-concept-badge {
+  max-width: 120px;
+  overflow: hidden;
+  padding: 5px 8px;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .practice-page .exercism-track-badge.is-local {

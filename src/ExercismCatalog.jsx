@@ -52,7 +52,7 @@ export default function ExercismCatalog({ initialTrack = 'Semua' }) {
     <section className="practice-inner exercism-inner exercism-content" aria-label="Katalog semua latihan Exercism">
       <div className="exercism-source-note">
         <BookOpen size={19} />
-        <p><strong>Metadata semua track dalam satu katalog offline.</strong> Nama, tingkat, konsep, status, dan tautan sumber berasal dari repositori resmi Exercism. Penyelesaian serta test suite untuk bahasa non-lokal berjalan di Exercism.</p>
+        <p><strong>Metadata resmi Exercism dalam satu katalog offline.</strong> Klik kartu untuk membuka instruksi dan test suite di Exercism; editor lokal CodeQuest tersedia untuk tiga bahasa.</p>
         <a href="https://exercism.org/tracks" target="_blank" rel="noreferrer">Daftar track<ExternalLink size={15} /></a>
       </div>
 
@@ -88,10 +88,9 @@ export default function ExercismCatalog({ initialTrack = 'Semua' }) {
             <h2>{exercise.name}</h2>
             <p className="exercism-catalog-track">{exercise.trackName}</p>
             <div className="exercism-card-tracks">
-              <span className="exercism-track-badge">{exercise.trackName}</span>
               {localTracks.has(exercise.track) && <span className="exercism-track-badge is-local">Editor lokal</span>}
+              {exercise.concepts.slice(0, 2).map(concept => <span className="exercism-concept-badge" key={concept}>{concept}</span>)}
             </div>
-            {exercise.concepts.length > 0 && <p className="exercism-catalog-concepts">{exercise.concepts.slice(0, 3).join(' · ')}</p>}
             <div className="exercism-card-bottom"><span>Buka di Exercism</span><ExternalLink size={17} /></div>
           </a>)}
         </div>
