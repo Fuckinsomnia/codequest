@@ -52,8 +52,8 @@ Rilis materi saat ini: **2026.11**.
 - **30 Hari Coding** — tantangan membangun kebiasaan belajar harian.
 - **Builds** — ruang membuat website dengan HTML, CSS, dan JavaScript, lengkap dengan live preview, penyimpanan lokal, dan unduhan HTML. Maksimal 30 proyek.
 - **PWA** — dapat dipasang ke layar utama HP atau desktop tanpa APK, Play Store, atau Android Studio.
-- **Offline** — materi, editor, font, ilustrasi ASCII, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
-- **Tema gelap/terang** dan tampilan responsif untuk layar kecil.
+- **Offline** — materi, editor, ilustrasi ASCII, dan runtime Python/SQLite tersedia setelah persiapan awal selesai.
+- **UI ASCII menyeluruh** — font monospace sistem, border teknikal, sudut kotak, shadow blok, aksen garis ganda, serta tema gelap/terang yang responsif.
 - **Grafis ASCII art** — latar, peta, karakter, ikon aplikasi, serta 61 ilustrasi kursus dan 6 ilustrasi proyek yang unik per bidang dan level.
 - **ASCII detail tinggi** — hero memakai ilustrasi ASCII pilihan pengguna; setiap track memakai foto realistis dengan ramp detail, warna asli, dan crop mengisi frame (`cover`). Sejumlah track memakai metafora alam: portrait ular Python, ladang tulip kuning untuk CSS, sawah untuk HTML, sinar matahari di hutan untuk JavaScript, pemandangan bawah laut untuk SQL, dan sungai bercabang untuk Git.
 - **Tanpa pelacakan aplikasi** — tidak ada akun, analytics aplikasi, atau iklan.
@@ -340,7 +340,7 @@ npm run build -- --base=/nama-repository/
 - **IndexedDB + localStorage** untuk progres.
 - **Service worker** untuk precache dan update offline.
 - **Manifest PWA** untuk instalasi, ikon, dan shortcut.
-- **Font lokal** Press Start 2P dan Mulish; tidak memerlukan Google Fonts.
+- **Font monospace sistem** melalui `src/ascii-ui.css`; tidak memerlukan Google Fonts atau aset font eksternal.
 - **GitHub Pages** sebagai hosting statis.
 - **Perpustakaan Exercism statis** di `src/data/exercism-library.json`; impor ulang dapat dilakukan dengan `npm run content:exercism`.
 

@@ -1,0 +1,405 @@
+:root {
+  --ascii: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", "Courier New", monospace;
+  --pixel: var(--ascii);
+  --ascii-shadow: #02061799;
+  --ascii-line: var(--line);
+}
+
+[data-theme='light'] {
+  --ascii-shadow: #1c294422;
+}
+
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+html,
+body {
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, #ffffff04 3px 4px);
+}
+
+body,
+button,
+input,
+textarea,
+select,
+summary,
+label {
+  font-family: var(--ascii) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+.logo,
+.eyebrow,
+.practice-eyebrow,
+.practice-pack-kicker,
+.exercism-card-top,
+.file-tab,
+.panel-toolbar,
+.lesson-position,
+.card-meta,
+.practice-overview,
+.catalog-release,
+.footer-grid h4 {
+  font-family: var(--ascii) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: .035em;
+  text-shadow: 2px 2px 0 var(--ascii-shadow);
+}
+
+p,
+li,
+label,
+input,
+textarea,
+select,
+button,
+a {
+  letter-spacing: .01em;
+}
+
+.eyebrow,
+.practice-eyebrow,
+.practice-pack-kicker {
+  letter-spacing: .16em;
+}
+
+.section-heading h2,
+.practice-intro h1 {
+  width: fit-content;
+  margin-inline: auto;
+  padding-bottom: 8px;
+  border-bottom: 3px double var(--blue);
+}
+
+.course-card h3,
+.project-body h3,
+.practice-pack h2,
+.exercism-card h2,
+.build-card h3,
+.journey-heading h3 {
+  padding-left: 8px;
+  border-left: 2px solid var(--blue);
+}
+
+.button,
+.icon-btn,
+input,
+textarea,
+select,
+.course-card,
+.project-card,
+.chapter,
+.side-panel,
+.practice-pack,
+.exercism-card,
+.practice-detail,
+.exercism-brief,
+.exercism-workspace,
+.modal,
+.toast,
+.dropdown-menu,
+.level-pill,
+.avatar-button,
+.stat,
+.achievement,
+.activity-panel,
+.data-settings,
+.daily-note,
+.project-step,
+.checkpoint,
+.certificate-panel,
+.catalog-note,
+.empty,
+.quest-banner,
+.adventurer,
+.practice-summary,
+.challenge-table,
+.code-example,
+.expected,
+.solution,
+.hint,
+.help-item,
+.quiz-option,
+.result-box,
+.local-indicator {
+  border-style: solid;
+  box-shadow: 3px 3px 0 var(--ascii-shadow);
+}
+
+.button:not(.icon-square) {
+  border-style: double;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+}
+
+.button:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--ascii-shadow);
+}
+
+.button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ascii-shadow);
+}
+
+input,
+textarea,
+select {
+  border-style: dashed;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-style: solid;
+}
+
+.course-card,
+.project-card,
+.practice-pack,
+.exercism-card,
+.build-card {
+  position: relative;
+  border-width: 1px;
+}
+
+.course-card::before,
+.project-card::before,
+.practice-pack::before,
+.exercism-card::before,
+.build-card::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--blue);
+  border-left: 2px solid var(--blue);
+  background: var(--bg);
+}
+
+.course-card:hover,
+.project-card:hover,
+.practice-pack:hover,
+.exercism-card:hover,
+.build-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ascii-shadow);
+}
+
+.chapter,
+.side-panel,
+.practice-pack,
+.exercism-card,
+.modal,
+.daily-note,
+.project-step,
+.checkpoint,
+.certificate-panel,
+.catalog-note,
+.empty,
+.adventurer,
+.practice-summary,
+.activity-panel,
+.data-settings {
+  border-width: 1px;
+}
+
+.chapter-number,
+.badge,
+.trophy-orb {
+  clip-path: none;
+  border-style: solid;
+  box-shadow: 2px 2px 0 var(--ascii-shadow);
+}
+
+.progress-track {
+  border-radius: 0;
+  background-image: repeating-linear-gradient(90deg, transparent 0 9px, #ffffff0d 9px 10px);
+}
+
+.progress-track > span {
+  background-image: repeating-linear-gradient(90deg, transparent 0 9px, #ffffff26 9px 10px);
+}
+
+.activity-cell,
+.activity-legend i {
+  border-radius: 0;
+}
+
+.dropdown-menu {
+  border-width: 1px;
+  border-style: dashed;
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, #ffffff05 3px 4px);
+}
+
+.dropdown-menu a {
+  border-left: 2px solid transparent;
+}
+
+.dropdown-menu a:hover {
+  border-left-color: var(--blue);
+}
+
+.site-header,
+.lesson-header,
+.lesson-footer,
+.panel-toolbar,
+.editor-actions,
+.build-toolbar,
+.build-tabs,
+.footer-bottom {
+  border-style: dashed;
+}
+
+.top-note,
+.site-header,
+.lesson-header,
+.lesson-footer,
+.panel-toolbar,
+.editor-actions,
+.build-toolbar,
+.build-tabs,
+.site-footer,
+.lesson-shell,
+.terminal-pane,
+.quiz-panel,
+.exercism-terminal {
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, #ffffff04 3px 4px);
+}
+
+.local-indicator,
+.lesson-position b,
+.free-label,
+.language-tag,
+.lesson-name small {
+  border: 1px dashed currentColor;
+}
+
+.hero-eyebrow,
+.hero-bottom,
+.hero-benefits,
+.mini-title>span:last-child,
+.mini-terminal>span:first-child,
+.floating-xp,
+.xp-reward {
+  font-family: var(--ascii) !important;
+  letter-spacing: .14em;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  padding: 7px 12px;
+  border-block: 1px dashed #ffd21a88;
+}
+
+.hero-button {
+  text-transform: uppercase;
+}
+
+.window-dots i {
+  border-radius: 0;
+  box-shadow: 1px 1px 0 #0008;
+}
+
+.mini-editor,
+.mini-character>div,
+.code-example,
+.expected,
+.solution,
+.hint,
+.help-item,
+.quiz-option,
+.result-box,
+.lesson-drawer {
+  border-style: solid;
+  box-shadow: 4px 4px 0 var(--ascii-shadow);
+}
+
+.lesson-copy h1,
+.lesson-copy h2,
+.project-detail-hero h1,
+.daily-hero h1,
+.catalog-hero h1,
+.course-hero h1 {
+  padding-left: 10px;
+  border-left: 3px double var(--blue);
+}
+
+.instruction-title,
+.help-heading {
+  border-style: dashed;
+}
+
+.quiz-content h2,
+.certificate h1,
+.mini-character small,
+.xp-reward>span {
+  font-family: var(--ascii) !important;
+}
+
+.quiz-option>span,
+.chapter-number {
+  font-family: var(--ascii) !important;
+}
+
+.modal {
+  border-width: 2px;
+  border-style: double;
+}
+
+.toast {
+  border-style: dashed;
+}
+
+.spinner {
+  border-radius: 0;
+  border-style: dashed;
+}
+
+.certificate {
+  border-style: double;
+  background-image: repeating-linear-gradient(0deg, transparent 0 4px, #3b344408 4px 5px);
+}
+
+[data-theme='light'] .course-card,
+[data-theme='light'] .project-card,
+[data-theme='light'] .practice-pack,
+[data-theme='light'] .exercism-card,
+[data-theme='light'] .chapter,
+[data-theme='light'] .side-panel,
+[data-theme='light'] .modal,
+[data-theme='light'] .dropdown-menu {
+  box-shadow: 4px 4px 0 #1c29441f;
+}
+
+@media (max-width: 720px) {
+  .section-heading h2,
+  .practice-intro h1 {
+    font-size: clamp(15px, 5vw, 22px);
+  }
+
+  .button:not(.icon-square) {
+    letter-spacing: .06em;
+  }
+}
