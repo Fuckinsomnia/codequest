@@ -397,6 +397,49 @@ select:focus {
   box-shadow: 4px 4px 0 #1c29441f;
 }
 
+.dropdown-menu.learn-menu {
+  width: 370px;
+  max-height: min(70vh, 560px);
+  overflow-y: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+}
+
+.dropdown-heading {
+  padding: 12px 10px 7px;
+  color: var(--muted);
+  font-family: var(--ascii);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.dropdown-group + .dropdown-group {
+  margin-top: 5px;
+  border-top: 1px dashed var(--line);
+}
+
+.learn-menu a {
+  gap: 9px;
+  min-height: 38px;
+  padding: 9px;
+  font-size: 12px;
+}
+
+.learn-menu a > span {
+  flex: 1;
+  min-width: 0;
+}
+
+.learn-menu a small {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 720px) {
   .section-heading h2,
   .practice-intro h1 {
@@ -405,5 +448,10 @@ select:focus {
 
   .button:not(.icon-square) {
     letter-spacing: .06em;
+  }
+
+  .site-header nav.open .dropdown-menu.learn-menu {
+    width: 100%;
+    max-height: 55vh;
   }
 }
