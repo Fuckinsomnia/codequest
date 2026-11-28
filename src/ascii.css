@@ -320,7 +320,8 @@
 
 .home-hero h1 {
   letter-spacing: -2px;
-  text-shadow: 3px 0 #542448, -3px 0 #542448, 0 -3px #542448, 0 4px #542448, 0 0 24px #f9731666;
+  -webkit-text-stroke: 1px #020617;
+  text-shadow: 3px 3px 0 #020617, 5px 6px 0 #542448, 0 0 24px #020617;
 }
 
 @media (max-width: 720px) {
