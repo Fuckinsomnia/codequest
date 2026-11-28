@@ -261,7 +261,6 @@ select:focus {
   border-left-color: var(--blue);
 }
 
-.site-header,
 .lesson-header,
 .lesson-footer,
 .panel-toolbar,
@@ -270,6 +269,11 @@ select:focus {
 .build-tabs,
 .footer-bottom {
   border-style: dashed;
+}
+
+.top-note,
+.site-header {
+  border: 0 !important;
 }
 
 .top-note,

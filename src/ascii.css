@@ -68,15 +68,15 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: repeating-linear-gradient(180deg, transparent 0 3px, #02061766 3px 4px);
+  background: repeating-linear-gradient(180deg, transparent 0 3px, #02061722 3px 4px);
   pointer-events: none;
 }
 
 .hero-shade {
   z-index: 1;
   background:
-    radial-gradient(circle at 50% 58%, #02061711, transparent 42%),
-    linear-gradient(#02061755 0, #02061722 34%, #02061799 76%, #020617 100%);
+    radial-gradient(circle at 50% 58%, #02061700, transparent 48%),
+    linear-gradient(#02061711 0, #02061708 34%, #02061755 76%, #020617 100%);
 }
 
 .home-hero .ascii-scene {
