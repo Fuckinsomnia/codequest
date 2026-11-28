@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Circle, Code2, Download, ExternalLink, Play, RotateCcw, Search, Terminal, X } from 'lucide-react';
 import { Editor, Empty } from './components';
 import { runCode } from './engine';
 import { completeLesson, downloadFile } from './store';
 import library from './data/exercism-library.json';
 
+const ExercismCatalog = lazy(() => import('./ExercismCatalog'));
 const trackLabels = { python: 'Python', javascript: 'JavaScript', sqlite: 'SQLite' };
 const extensions = { python: 'py', javascript: 'js', sqlite: 'sql' };
 const progressId = (language, slug) => `exercism-${language}-${slug}`;
@@ -188,16 +189,21 @@ function ExerciseDetail({ exercise, state, setState, notify }) {
 }
 
 export default function ExercismLibrary({ state, setState, notify, slug }) {
-  const requestedTrack = new URLSearchParams(window.location.hash.includes('?') ? window.location.hash.slice(window.location.hash.indexOf('?') + 1) : '').get('track');
+  const params = new URLSearchParams(window.location.hash.includes('?') ? window.location.hash.slice(window.location.hash.indexOf('?') + 1) : '');
+  const requestedTrack = params.get('track');
+  const requestedView = params.get('view');
   const [query, setQuery] = useState('');
   const [track, setTrack] = useState(['python', 'javascript', 'sqlite'].includes(requestedTrack) ? requestedTrack : 'Semua');
   const [difficulty, setDifficulty] = useState('Semua');
+  const [view, setView] = useState(requestedView === 'all' ? 'all' : 'unique');
   useEffect(() => setTrack(['python', 'javascript', 'sqlite'].includes(requestedTrack) ? requestedTrack : 'Semua'), [requestedTrack]);
+  useEffect(() => setView(requestedView === 'all' ? 'all' : 'unique'), [requestedView]);
   const completed = useMemo(() => new Set(state.completed), [state.completed]);
   const exercise = slug ? library.exercises.find(item => item.slug === slug) : null;
 
   if (slug && !exercise) return <main className="practice-page exercism-page"><section className="practice-inner exercism-inner exercism-content"><Empty title="Materi tidak ditemukan" description="Latihan Exercism ini tidak tersedia di perpustakaan CodeQuest." action={<a className="button blue small" href="#/practice/exercism">Kembali ke perpustakaan<ArrowRight size={16} /></a>} /></section></main>;
   if (exercise) return <ExerciseDetail key={`${exercise.slug}:${window.location.hash}`} exercise={exercise} state={state} setState={setState} notify={notify} />;
+  if (view === 'all') return <Suspense fallback={<main className="practice-page exercism-page"><section className="practice-inner exercism-inner exercism-content"><p role="status">Memuat katalog semua bahasa…</p></section></main>}><ExercismCatalog initialTrack={requestedTrack || 'Semua'} /></Suspense>;
 
   const term = query.trim().toLocaleLowerCase();
   const visible = library.exercises.filter(item => {
@@ -232,6 +238,10 @@ export default function ExercismLibrary({ state, setState, notify, slug }) {
     </header>
 
     <section className="practice-inner exercism-inner exercism-content" aria-label="Perpustakaan materi Exercism">
+      <div className="exercism-view-tabs" role="group" aria-label="Tampilan perpustakaan Exercism">
+        <button type="button" aria-pressed={view === 'unique'} onClick={() => setView('unique')}>Materi Unik ({library.exercises.length})</button>
+        <button type="button" aria-pressed={view === 'all'} onClick={() => setView('all')}>Semua Bahasa (85)</button>
+      </div>
       <div className="exercism-source-note">
         <BookOpen size={19} />
         <p><strong>{library.sourceCount} masalah sumber → {library.exercises.length} materi aktif.</strong> {library.excluded.length} materi dibuang karena deprecated atau tumpang tindih dengan CodeQuest. Materi berlisensi MIT dan mencantumkan atribusi.</p>

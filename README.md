@@ -47,7 +47,7 @@ Rilis materi saat ini: **2026.11**.
 - **Progres lokal** — XP, pelajaran selesai, streak harian, lencana bab, bookmark, catatan, dan draft kode tersimpan otomatis.
 - **Sertifikat belajar mandiri** — terbuka setelah seluruh pelajaran dalam satu kursus selesai; dapat dicetak atau disimpan sebagai PDF.
 - **Coding Challenges** — latihan tambahan dari bank soal yang tersedia.
-- **Materi Exercism** — 132 masalah latihan lintas bahasa yang tersaring, dengan 320 varian editor lokal Python/JavaScript/SQLite, instruksi offline, progres terpisah, dan tautan sumber.
+- **Materi Exercism** — 132 masalah unik dengan 320 varian editor lokal Python/JavaScript/SQLite, serta katalog **85 bahasa dan 8.317 varian latihan** yang dapat dicari dan difilter.
 - **Guided Projects** — enam proyek dengan langkah dan checklist penilaian mandiri.
 - **30 Hari Coding** — tantangan membangun kebiasaan belajar harian.
 - **Builds** — ruang membuat website dengan HTML, CSS, dan JavaScript, lengkap dengan live preview, penyimpanan lokal, dan unduhan HTML. Maksimal 30 proyek.
@@ -342,7 +342,7 @@ npm run build -- --base=/nama-repository/
 - **Manifest PWA** untuk instalasi, ikon, dan shortcut.
 - **Font monospace sistem** melalui `src/ascii-ui.css`; tidak memerlukan Google Fonts atau aset font eksternal.
 - **GitHub Pages** sebagai hosting statis.
-- **Perpustakaan Exercism statis** di `src/data/exercism-library.json`; impor ulang dapat dilakukan dengan `npm run content:exercism`.
+- **Perpustakaan Exercism statis** di `src/data/exercism-library.json` dan katalog semua bahasa di `src/data/exercism-tracks.json`; keduanya dapat diperbarui melalui script impor.
 
 Plugin `offlineBundle` di `vite.config.js` mengumpulkan aset publik dan hasil bundle, menghitung versi cache, lalu menyuntikkan daftar precache ke `sw.js`.
 
@@ -364,16 +364,17 @@ Perpustakaan latihan mengambil masalah unik dari [Exercism](https://exercism.org
 - [exercism/javascript](https://github.com/exercism/javascript)
 - [exercism/sqlite](https://github.com/exercism/sqlite)
 
-Impor menyimpan commit sumber di `src/data/exercism-library.json`, membuang 13 masalah deprecated dan 7 masalah yang tumpang tindih dengan materi CodeQuest. Instruksi mengikuti teks sumber berbahasa Inggris dan tetap menautkan sumber asli. Editor lokal menjalankan kode, tetapi tidak menggantikan test suite, analisis otomatis, atau mentoring Exercism.
+Impor menyimpan commit sumber di `src/data/exercism-library.json`, membuang 13 masalah deprecated dan 7 masalah yang tumpang tindih dengan materi CodeQuest. Instruksi mengikuti teks sumber berbahasa Inggris dan tetap menautkan sumber asli. Editor lokal hanya menjalankan Python, JavaScript, dan SQLite; katalog 85 bahasa berisi metadata dan tautan untuk seluruh varian latihan, dimuat terpisah agar tetap ringan.
 
 Untuk memperbarui materi:
 
 ```bash
 npm run content:exercism
+npm run content:exercism:tracks
 npm test
 ```
 
-Importer memerlukan Git dan akses jaringan ke GitHub, lalu mengganti `src/data/exercism-library.json`.
+Importer materi unik memerlukan Git dan akses jaringan ke GitHub. Importer katalog semua bahasa membaca daftar track Exercism dan `config.json` resmi, lalu mengganti `src/data/exercism-tracks.json`.
 
 ### MIT License
 
